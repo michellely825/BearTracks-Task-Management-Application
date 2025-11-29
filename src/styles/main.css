@@ -1,6 +1,18 @@
-body {
-  background-color: rgb(205, 225, 244);
+@font-face {
+  font-family: Montserrat;
+  src: url(../fonts/Montserrat-VariableFont_wght.ttf);
 }
-#enter-name {
-  display: inline;
+
+body {
+  background-color: rgb(203, 224, 243);
+  font-family: Montserrat;
+}
+
+.enter-name input,
+label {
+  display: block;
+}
+
+.choose-char label {
+  display: block;
 }
