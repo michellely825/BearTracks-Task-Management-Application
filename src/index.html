@@ -7,19 +7,45 @@
     <link rel="stylesheet" href="/src/styles/main.css" />
   </head>
   <body>
-    <h2>Welcome!</h2>
-    <div class="enter-name">
-      <label for="name">Enter your name </label>
-      <input type="text" id="name" />
+    <div class="pop-up">
+      <h2>Welcome!</h2>
+
+      <div class="choose-char">
+        <!-- <label for="character">Choose your character</label> -->
+        <button class="arrow-button">
+          <img
+            id="left-arrow"
+            src="images/arrows/arrow2.png"
+            alt="arrow button"
+            width="40px"
+          />
+        </button>
+        <img
+          src="images/characters/lion12.png"
+          alt="character"
+          width="55%"
+          id="character"
+        />
+        <button class="arrow-button">
+          <img
+            id="right-arrow"
+            src="images/arrows/arrow2.png"
+            alt="arrow button"
+            width="40px"
+          />
+        </button>
+      </div>
+
+      <div class="enter-name">
+        <label for="name">Enter your name: </label>
+        <div class="name-input-and-button">
+          <input type="text" id="name" placeholder="name" />
+          <button id="done-button">Done</button>
+        </div>
+      </div>
     </div>
-    <div class="choose-char">
-      <label for="character">Choose your character</label>
-      <button><</button
-      ><img src="images/lion12.png" alt="" width="200" /><button>></button>
+    <div>
+      <script src="index.js"></script>
     </div>
-    <div class="buttons">
-      <button>Done</button>
-    </div>
-    <script src="index.js"></script>
   </body>
 </html>

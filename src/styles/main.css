@@ -4,15 +4,98 @@
 }
 
 body {
-  background-color: rgb(203, 224, 243);
+  background-color: rgb(173, 219, 237);
   font-family: Montserrat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.enter-name input,
-label {
-  display: block;
+.pop-up {
+  width: 60vw;
+  max-width: 500px;
+  height: 60vh;
+  background-color: rgb(244, 236, 200);
+  border: 4px solid rgb(206, 198, 159);
+  border-radius: 80px;
+  padding: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.choose-char label {
-  display: block;
+img {
+  vertical-align: middle;
+}
+
+.arrow-button #left-arrow {
+  transform: scaleX(-1);
+}
+
+.arrow-button {
+  border: none;
+  background-color: transparent;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.arrow-button:hover {
+  animation-name: bounce;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.pop-up h2 {
+  font-size: 3em;
+  color: rgb(84, 127, 170);
+  margin: 0;
+}
+
+.enter-name {
+  margin: 10px;
+  /* font-size: 1.5ems; */
+  /* padding: 15px; */
+}
+/* .enter-name input::placeholder {
+  font-size: 1.3em;
+} */
+
+.enter-name input {
+  width: 30vw;
+  height: 40%;
+  border: none;
+  border-radius: 30px;
+  padding-left: 13px;
+  font-family: Montserrat;
+  font-size: 1.1em;
+}
+
+.enter-name input:focus {
+  outline: none;
+}
+
+#done-button {
+  border: none;
+  background-color: rgb(238, 75, 75);
+  color: white;
+  border-radius: 25px;
+  width: 65px;
+  height: 35px;
+  padding: 5px;
+  font-family: Montserrat;
+  font-size: 0.9em;
+}
+
+.name-input-and-button {
+  background-color: white;
+  border-radius: 25px;
+}
+
+@keyframes bounce {
+  50% {
+    transform: translateX(30%);
+  }
 }
