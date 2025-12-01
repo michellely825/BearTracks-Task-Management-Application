@@ -3,6 +3,11 @@
   src: url(../fonts/Montserrat-VariableFont_wght.ttf);
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background-color: rgb(173, 219, 237);
   font-family: Montserrat;
@@ -13,10 +18,11 @@ body {
 }
 
 .pop-up {
-  width: 60vw;
-  max-width: 500px;
+  width: 62vw;
+  max-width: 600px;
   height: 60vh;
   background-color: rgb(244, 236, 200);
+  /* background-color: rgb(240, 233, 200); */
   border: 4px solid rgb(206, 198, 159);
   border-radius: 80px;
   padding: 20px 50px;
@@ -24,6 +30,23 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.pop-up h2 {
+  font-size: 3.5em;
+  color: rgb(84, 127, 170);
+}
+
+#character-img {
+  width: 40vw;
+  max-width: 300px;
+  /* border: 2px solid red; */
+}
+
+.choose-char {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 img {
@@ -37,31 +60,35 @@ img {
 .arrow-button {
   border: none;
   background-color: transparent;
-  margin: 3px;
   cursor: pointer;
+  /* border: 2px solid red; */
+  margin: 10%;
 }
 
-.arrow-button:hover {
-  animation-name: bounce;
-  animation-duration: 1s;
+.arrow-button img {
+  width: 8vw;
+  max-width: 70px;
+}
+
+#left-arrow:hover {
+  animation-name: slide-left;
+  animation-duration: 0.5s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+  animation-direction: alternate;
 }
 
-.pop-up h2 {
-  font-size: 3em;
-  color: rgb(84, 127, 170);
-  margin: 0;
+#right-arrow:hover {
+  animation-name: slide-right;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
 }
 
 .enter-name {
   margin: 10px;
-  /* font-size: 1.5ems; */
-  /* padding: 15px; */
 }
-/* .enter-name input::placeholder {
-  font-size: 1.3em;
-} */
 
 .enter-name input {
   width: 30vw;
@@ -82,11 +109,13 @@ img {
   background-color: rgb(238, 75, 75);
   color: white;
   border-radius: 25px;
-  width: 65px;
+  width: 20%;
+  min-width: 70px;
   height: 35px;
   padding: 5px;
   font-family: Montserrat;
-  font-size: 0.9em;
+  font-size: 1em;
+  cursor: pointer;
 }
 
 .name-input-and-button {
@@ -94,8 +123,14 @@ img {
   border-radius: 25px;
 }
 
-@keyframes bounce {
+@keyframes slide-right {
   50% {
-    transform: translateX(30%);
+    transform: translateX(10px);
+  }
+}
+
+@keyframes slide-left {
+  50% {
+    transform: scaleX(-1) translateX(10px);
   }
 }
