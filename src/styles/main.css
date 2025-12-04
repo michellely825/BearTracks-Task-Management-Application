@@ -41,7 +41,7 @@ body {
   max-width: 270px;
   /* height: 35vh; */
   /* max-height: 270px; */
-  filter: drop-shadow(0 0 6px gray);
+  filter: drop-shadow(0 0 7px rgb(160, 157, 157));
 }
 
 .choose-char {
