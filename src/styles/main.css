@@ -39,8 +39,9 @@ body {
 #character-img {
   width: 35vw;
   max-width: 270px;
+  /* height: 35vh; */
+  /* max-height: 270px; */
   filter: drop-shadow(0 0 6px gray);
-  /* border: 2px solid red; */
 }
 
 .choose-char {
@@ -93,6 +94,7 @@ img {
   height: 35px;
   background-color: white;
   border-radius: 25px;
+  filter: drop-shadow(0 0 7px rgb(206, 198, 159));
   display: flex;
   justify-content: space-between;
   align-items: center;
