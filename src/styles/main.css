@@ -40,6 +40,7 @@ body {
 #character-img {
   width: 40vw;
   max-width: 300px;
+  filter: drop-shadow(0 0 6px gray);
   /* border: 2px solid red; */
 }
 
@@ -47,6 +48,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 img {
@@ -91,7 +94,7 @@ img {
 }
 
 .enter-name input {
-  width: 30vw;
+  width: 35vw;
   height: 40%;
   border: none;
   border-radius: 30px;
