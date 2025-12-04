@@ -114,6 +114,12 @@ img {
   outline: none;
 }
 
+.name-input-and-button input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+  /* box-shadow: 0 0 0 1000px #fff inset !important; */
+  /* -webkit-text-fill-color: inherit !important; */
+}
+
 #done-button {
   background-color: rgb(238, 75, 75);
   color: white;
