@@ -29,6 +29,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  filter: drop-shadow(0 0 10px rgb(122, 154, 159));
 }
 
 .pop-up h2 {
@@ -70,6 +71,7 @@ img {
 .arrow-button img {
   width: 8vw;
   max-width: 70px;
+  -webkit-user-drag: none;
 }
 
 #left-arrow:hover {
@@ -114,12 +116,12 @@ img {
   outline: none;
 }
 
+/* removed browser's autofill background color */
 .name-input-and-button input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
-  /* box-shadow: 0 0 0 1000px #fff inset !important; */
-  /* -webkit-text-fill-color: inherit !important; */
 }
 
+/* TODO: ADD SOME SHADING TO THE BUTTON WHEN YOU CLICK? */
 #done-button {
   background-color: rgb(238, 75, 75);
   color: white;
