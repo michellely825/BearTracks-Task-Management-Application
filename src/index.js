@@ -1,31 +1,32 @@
-let charIndex = 0;
 const doneButton = document.getElementById("done-button");
 doneButton.addEventListener("click", doSomething);
 
 function doSomething() {
   console.log("hi bitch");
 }
+
+let charImgIndex = 0;
 const charImg = document.getElementById("character-img");
 const rightArrow = document.getElementById("right-arrow");
+const leftArrow = document.getElementById("left-arrow");
+
+leftArrow.addEventListener("click", prevCharacter);
 rightArrow.addEventListener("click", nextCharacter);
 
 function nextCharacter() {
-  console.log("right click");
-  if (charIndex == characters.length - 1) {
-    charIndex = -1;
+  charImgIndex++;
+  if (charImgIndex >= characters.length) {
+    charImgIndex = 0;
   }
-  charImg.src = characters[(charIndex += 1)];
+  charImg.src = characters[charImgIndex];
 }
 
-const leftArrow = document.getElementById("left-arrow");
-leftArrow.addEventListener("click", prevCharacter);
-
 function prevCharacter() {
-  console.log("left click");
-  if (charIndex == 0) {
-    charIndex = characters.length;
+  charImgIndex--;
+  if (charImgIndex < 0) {
+    charImgIndex = characters.length - 1;
   }
-  charImg.src = characters[(charIndex -= 1)];
+  charImg.src = characters[charImgIndex];
 }
 
 const characters = [
