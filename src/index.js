@@ -1,11 +1,13 @@
+// Variables
 let charImgIndex = 0;
+let username;
 
 // DOM Elements
 const doneButton = document.getElementById("done-button");
 const charImg = document.getElementById("character-img");
 const rightArrow = document.getElementById("right-arrow");
 const leftArrow = document.getElementById("left-arrow");
-// Variables
+const usernameInput = document.getElementById("name");
 
 // Data
 const characters = [
@@ -18,13 +20,13 @@ const characters = [
 ];
 
 // Event listeners
-doneButton.addEventListener("click", doSomething);
+doneButton.addEventListener("click", saveName);
 leftArrow.addEventListener("click", prevCharacter);
 rightArrow.addEventListener("click", nextCharacter);
 
 // Functions
-function doSomething() {
-  console.log("hi bitch");
+function saveName() {
+  username = usernameInput.value;
 }
 
 function nextCharacter() {
