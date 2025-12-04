@@ -20,13 +20,16 @@ const characters = [
 ];
 
 // Event listeners
-doneButton.addEventListener("click", saveName);
+doneButton.addEventListener("click", beginProgram);
 leftArrow.addEventListener("click", prevCharacter);
 rightArrow.addEventListener("click", nextCharacter);
 
 // Functions
-function saveName() {
+function beginProgram() {
   username = usernameInput.value;
+  window.location.href = `todo.html?name=${encodeURIComponent(
+    username
+  )}&char=${encodeURIComponent(charImgIndex)}}`;
 }
 
 function nextCharacter() {
