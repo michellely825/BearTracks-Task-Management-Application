@@ -46,5 +46,5 @@ function createTask(taskValue) {
 }
 
 function removeTask(e) {
-  e.target.remove();
+  e.target.parentElement.remove();
 }
