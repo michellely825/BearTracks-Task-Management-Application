@@ -5,51 +5,46 @@ const taskInput = document.getElementById("task-input");
 const taskList = document.getElementById("task-list");
 
 backButton.addEventListener("click", goBack);
-addButton.addEventListener("click", addTask);
+addButton.addEventListener("click", addTaskToList);
 
 function goBack() {
   window.location.href = `index.html`;
 }
 
-function addTask() {
+function addTaskToList() {
   if (taskInput.value != "") {
     tasks.push(taskInput.value);
 
-    const newTask = document.createElement("li");
-    const delButton = document.createElement("button");
-    newTask.innerHTML = taskInput.value;
-
-    delButton.innerHTML = "X";
-    delButton.className = "del-button";
-    delButton.addEventListener("click", removeTask);
-    // delButton.id = ""; // assign each del button w unique id?
-
-    taskList.append(newTask);
-    newTask.append(delButton);
+    taskList.append(createTask(taskInput.value));
+    // newTask.append(delButton);
 
     taskInput.value = "";
     console.log(tasks);
   }
 }
 
-function createTaskObject(taskInput) {
-  const newTaskObj = {};
-  newTaskObj.value = taskInput;
-
+function createTask(taskValue) {
+  let num = 0;
   const newTask = document.createElement("li");
+  const newTaskInput = document.createElement("input");
+  const newTaskLabel = document.createElement("label");
   const delButton = document.createElement("button");
-  newTask.innerHTML = taskInput.value;
+  newTaskInput.type = "checkbox";
+  newTaskInput.value = taskValue;
+  newTaskInput.id = "task" + num;
+  newTaskLabel.for = "task" + num;
+  newTaskLabel.innerHTML = taskValue;
+  num++;
 
   delButton.innerHTML = "X";
   delButton.className = "del-button";
   delButton.addEventListener("click", removeTask);
+  newTask.append(newTaskInput);
+  newTask.append(newTaskLabel);
+  newTask.append(delButton);
   return newTask;
 }
 
 function removeTask(e) {
   e.target.remove();
 }
-
-// function createTaskItem() {
-
-// }
