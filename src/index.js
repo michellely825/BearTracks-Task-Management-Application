@@ -26,10 +26,12 @@ rightArrow.addEventListener("click", nextCharacter);
 
 // Functions
 function beginProgram() {
-  username = usernameInput.value;
-  window.location.href = `todo.html?name=${encodeURIComponent(
-    username
-  )}&char=${encodeURIComponent(charImgIndex)}}`;
+  if (usernameInput.value != "") {
+    username = usernameInput.value;
+    window.location.href = `todo.html?name=${encodeURIComponent(
+      username
+    )}&char=${encodeURIComponent(charImgIndex)}}`;
+  }
 }
 
 function nextCharacter() {

@@ -33,8 +33,9 @@ body {
 }
 
 .pop-up h2 {
-  font-size: 3.5em;
+  font-size: 3em;
   color: rgb(84, 127, 170);
+  /* align-self: center; */
 }
 
 #character-img {
