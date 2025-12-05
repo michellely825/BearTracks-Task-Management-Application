@@ -14,35 +14,29 @@ function goBack() {
 function addTaskToList() {
   if (taskInput.value != "") {
     tasks.push(taskInput.value);
-
     taskList.append(createTask(taskInput.value));
-    // newTask.append(delButton);
-
     taskInput.value = "";
     console.log(tasks);
   }
 }
 
 function createTask(taskValue) {
-  let num = 0;
-  const newTask = document.createElement("li");
-  const newTaskInput = document.createElement("input");
-  const newTaskLabel = document.createElement("label");
+  const task = document.createElement("li");
+  const tInput = document.createElement("input");
+  const tLabel = document.createElement("label");
   const delButton = document.createElement("button");
-  newTaskInput.type = "checkbox";
-  newTaskInput.value = taskValue;
-  newTaskInput.id = "task" + num;
-  newTaskLabel.for = "task" + num;
-  newTaskLabel.innerHTML = taskValue;
-  num++;
+
+  tInput.type = "checkbox";
+  tLabel.textContent = taskValue;
+  tLabel.prepend(tInput);
 
   delButton.innerHTML = "X";
   delButton.className = "del-button";
   delButton.addEventListener("click", removeTask);
-  newTask.append(newTaskInput);
-  newTask.append(newTaskLabel);
-  newTask.append(delButton);
-  return newTask;
+
+  task.append(tLabel);
+  task.append(delButton);
+  return task;
 }
 
 function removeTask(e) {

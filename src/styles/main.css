@@ -136,6 +136,58 @@ img {
   cursor: pointer;
 }
 
+h3 {
+  font-size: 2.5em;
+  color: rgb(84, 127, 170);
+}
+
+#task-input-and-button {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 20px;
+  height: 35px;
+}
+
+#task-input {
+  border: none;
+  border-radius: 20px;
+  width: 75%;
+  padding-left: 15px;
+  font-size: 1.1em;
+}
+
+#task-input:focus {
+  outline: none;
+}
+
+#add-button {
+  width: 25%;
+  border-radius: 20px;
+  border: none;
+  background-color: rgb(238, 75, 75);
+  color: white;
+  cursor: pointer;
+}
+
+h4 {
+  font-size: 1.7em;
+  color: darkcyan;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.del-button {
+  border: none;
+  color: gray;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 @keyframes slide-right {
   50% {
     transform: translateX(10px);
