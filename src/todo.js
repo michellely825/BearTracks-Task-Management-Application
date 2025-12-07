@@ -2,10 +2,27 @@ const tasks = [];
 const backButton = document.getElementById("back-button");
 const addButton = document.getElementById("add-button");
 const taskInput = document.getElementById("task-input");
-const taskList = document.getElementById("task-list");
+const incompleteTasks = document.getElementById("incomplete-tasks");
+const completedTasks = document.getElementById("completed-tasks");
 
 backButton.addEventListener("click", goBack);
 addButton.addEventListener("click", addTaskToList);
+incompleteTasks.addEventListener("change", moveTask);
+
+function moveTask(e) {
+  if (e.target.type == "checkbox") {
+    e.target.parentElement.parentElement.remove();
+    const task = createTask(e.target.parentElement.textContent);
+    if (e.target.checked) {
+      task.querySelector('input[type="checkbox"]').checked = true;
+      task.className = "completed";
+      completedTasks.append(task);
+    } else {
+      task.classList.remove("completed");
+      incompleteTasks.append(task);
+    }
+  }
+}
 
 function goBack() {
   window.location.href = `index.html`;
@@ -14,7 +31,7 @@ function goBack() {
 function addTaskToList() {
   if (taskInput.value != "") {
     tasks.push(taskInput.value);
-    taskList.append(createTask(taskInput.value));
+    incompleteTasks.append(createTask(taskInput.value));
     taskInput.value = "";
     console.log(tasks);
   }
@@ -27,6 +44,7 @@ function createTask(taskValue) {
   const delButton = document.createElement("button");
 
   tInput.type = "checkbox";
+
   tLabel.textContent = taskValue;
   tLabel.prepend(tInput);
 

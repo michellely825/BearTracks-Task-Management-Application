@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles/main.css" />
   </head>
   <body>
-    <div>
+    <div class="pop-up">
       <button id="back-button">back</button>
       <h3>DoDashBoard</h3>
       <div id="task-input-and-button">
@@ -15,7 +15,9 @@
         <button id="add-button">Add</button>
       </div>
       <h4>Tasks:</h4>
-      <ul id="task-list"></ul>
+      <ul class="task-list" id="incomplete-tasks"></ul>
+      <h4>Completed:</h4>
+      <ul class="task-list" id="completed-tasks"></ul>
     </div>
     <script src="todo.js"></script>
   </body>

@@ -147,6 +147,11 @@ h3 {
   justify-content: space-between;
   border-radius: 20px;
   height: 35px;
+  width: 80%;
+}
+
+#task-input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
 }
 
 #task-input {
@@ -186,6 +191,10 @@ li {
   color: gray;
   background-color: transparent;
   cursor: pointer;
+}
+
+.completed {
+  text-decoration: line-through;
 }
 
 @keyframes slide-right {
