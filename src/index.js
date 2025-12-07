@@ -56,10 +56,10 @@ function prevCharacter() {
 function updateWelcome(e) {
   console.log(e.target.value);
   if (usernameInput.value != "" && nameSpan.textContent == "") {
-    nameSpan.textContent += " ";
+    nameSpan.textContent += ", ";
   } else if (usernameInput.value == "") {
-    console.log("empty");
-    nameSpan.textContent = nameSpan.textContent.replace(" ", "");
+    nameSpan.textContent = "";
+  } else if (usernameInput.value != "" && nameSpan.textContent != "") {
+    nameSpan.textContent = ", " + e.target.value;
   }
-  // nameSpan.textContent + e.target.value;
 }
