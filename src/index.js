@@ -57,8 +57,7 @@ function updateWelcome(e) {
   console.log(e.target.value);
   if (usernameInput.value != "") {
     nameSpan.textContent = ", " + e.target.value;
-  } else if (usernameInput.value == "") {
+  } else {
     nameSpan.textContent = "";
-  } else if (usernameInput.value != "" && nameSpan.textContent != "") {
   }
 }
