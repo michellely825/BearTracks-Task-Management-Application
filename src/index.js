@@ -3,11 +3,13 @@ let charImgIndex = 0;
 let username;
 
 // DOM Elements
+// const welcomeText = document.getElementById("welcome-text");
+const nameSpan = document.getElementById("name-span");
 const doneButton = document.getElementById("done-button");
 const charImg = document.getElementById("character-img");
 const rightArrow = document.getElementById("right-arrow");
 const leftArrow = document.getElementById("left-arrow");
-const usernameInput = document.getElementById("name");
+const usernameInput = document.getElementById("name-input");
 
 // Data
 const characters = [
@@ -23,6 +25,7 @@ const characters = [
 doneButton.addEventListener("click", beginProgram);
 leftArrow.addEventListener("click", prevCharacter);
 rightArrow.addEventListener("click", nextCharacter);
+usernameInput.addEventListener("input", updateWelcome);
 
 // Functions
 function beginProgram() {
@@ -48,4 +51,15 @@ function prevCharacter() {
     charImgIndex = characters.length - 1;
   }
   charImg.src = characters[charImgIndex];
+}
+
+function updateWelcome(e) {
+  console.log(e.target.value);
+  if (usernameInput.value != "" && nameSpan.textContent == "") {
+    nameSpan.textContent += " ";
+  } else if (usernameInput.value == "") {
+    console.log("empty");
+    nameSpan.textContent = nameSpan.textContent.replace(" ", "");
+  }
+  // nameSpan.textContent + e.target.value;
 }
