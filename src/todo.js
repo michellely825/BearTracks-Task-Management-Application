@@ -52,7 +52,8 @@ function createTask(taskValue) {
   tLabel.prepend(tInput);
 
   delButton.innerHTML = "X";
-  delButton.className = "del-button";
+  delButton.className = "button";
+  delButton.id = "del-button";
   delButton.addEventListener("click", removeTask);
 
   task.append(tLabel);

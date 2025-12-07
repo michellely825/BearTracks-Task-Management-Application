@@ -32,10 +32,20 @@ body {
   filter: drop-shadow(0 0 10px rgb(122, 154, 159));
 }
 
+#to-do-page {
+  height: 75vh;
+  width: 80vw;
+}
+
+#back-button {
+  margin: 0px;
+}
+
 .main h2 {
   font-size: 3em;
   color: rgb(84, 127, 170);
   text-align: center;
+  margin-top: 25px;
 }
 
 #character-img {
@@ -127,6 +137,11 @@ img {
   background-color: rgb(238, 75, 75);
   color: white;
   border: none;
+  cursor: pointer;
+}
+
+#add-button,
+#done-button {
   border-radius: 25px;
   width: 24%;
   min-width: 70px;
@@ -134,7 +149,6 @@ img {
   height: 100%;
   padding: 5px;
   font-size: 1em;
-  cursor: pointer;
 }
 
 #task-input-and-button {
@@ -172,7 +186,7 @@ h4 {
 
 .lists {
   width: 90%;
-  height: 25%;
+  height: 35%;
   /* border: 2px solid blue; */
   /* border-radius: 20px; */
 }
@@ -188,11 +202,11 @@ li {
   /* align-items: center; */
 }
 
-.del-button {
-  border: none;
-  color: gray;
-  background-color: transparent;
-  cursor: pointer;
+#del-button {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 100%;
 }
 
 .completed {
