@@ -3,7 +3,6 @@ let charImgIndex = 0;
 let username;
 
 // DOM Elements
-// const welcomeText = document.getElementById("welcome-text");
 const nameSpan = document.getElementById("name-span");
 const doneButton = document.getElementById("done-button");
 const charImg = document.getElementById("character-img");
@@ -22,21 +21,12 @@ const characters = [
 ];
 
 // Event listeners
-doneButton.addEventListener("click", beginProgram);
 leftArrow.addEventListener("click", prevCharacter);
 rightArrow.addEventListener("click", nextCharacter);
 usernameInput.addEventListener("input", updateWelcome);
+doneButton.addEventListener("click", beginProgram);
 
 // Functions
-function beginProgram() {
-  if (usernameInput.value != "") {
-    username = usernameInput.value;
-    window.location.href = `todo.html?name=${encodeURIComponent(
-      username
-    )}&char=${encodeURIComponent(charImgIndex)}}`;
-  }
-}
-
 function nextCharacter() {
   charImgIndex++;
   if (charImgIndex >= characters.length) {
@@ -59,5 +49,12 @@ function updateWelcome(e) {
     nameSpan.textContent = ", " + e.target.value;
   } else {
     nameSpan.textContent = "";
+  }
+}
+
+function beginProgram() {
+  if (usernameInput.value != "") {
+    username = usernameInput.value;
+    window.location.href = `todo.html?`;
   }
 }

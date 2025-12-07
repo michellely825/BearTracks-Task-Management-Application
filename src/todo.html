@@ -7,17 +7,21 @@
     <link rel="stylesheet" href="styles/main.css" />
   </head>
   <body>
-    <div class="pop-up">
+    <div class="main">
       <button id="back-button">back</button>
-      <h3>DoDashBoard</h3>
+      <h2>Dashboard</h2>
       <div id="task-input-and-button">
         <input id="task-input" type="text" placeholder="Add your task..." />
-        <button id="add-button">Add</button>
+        <button class="button" id="add-button">Add</button>
       </div>
-      <h4>Tasks:</h4>
-      <ul class="task-list" id="incomplete-tasks"></ul>
-      <h4>Completed:</h4>
-      <ul class="task-list" id="completed-tasks"></ul>
+      <div class="lists">
+        <h4>Tasks:</h4>
+        <ul class="task-list" id="incomplete-tasks"></ul>
+      </div>
+      <div class="lists">
+        <h4>Completed:</h4>
+        <ul class="task-list" id="completed-tasks"></ul>
+      </div>
     </div>
     <script src="todo.js"></script>
   </body>
