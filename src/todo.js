@@ -44,23 +44,41 @@ function createTask(taskValue) {
   const task = document.createElement("li");
   const tInput = document.createElement("input");
   const tLabel = document.createElement("label");
+
+  const buttonDiv = document.createElement("div");
   const delButton = document.createElement("button");
+  const delImg = document.createElement("img");
+  const editButton = document.createElement("button");
+  const editImg = document.createElement("img");
 
   tInput.type = "checkbox";
 
   tLabel.textContent = taskValue;
   tLabel.prepend(tInput);
 
-  delButton.innerHTML = "X";
-  delButton.className = "button";
-  delButton.id = "del-button";
+  buttonDiv.className = "button-div";
+
+  delImg.src = "images/del (1).png";
+  delImg.id = "del-img";
+  delButton.id = "delete-button";
+  delButton.append(delImg);
   delButton.addEventListener("click", removeTask);
 
+  editImg.src = "images/edit1smaller.png";
+  editImg.id = "edit-img";
+  editButton.id = "edit-button";
+
+  editButton.append(editImg);
+  editButton.addEventListener("click", editButton);
+
+  buttonDiv.append(editButton);
+  buttonDiv.append(delButton);
+
   task.append(tLabel);
-  task.append(delButton);
+  task.append(buttonDiv);
   return task;
 }
 
 function removeTask(e) {
-  e.target.parentElement.remove();
+  e.target.parentElement.parentElement.parentElement.remove();
 }

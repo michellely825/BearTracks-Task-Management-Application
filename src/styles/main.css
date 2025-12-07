@@ -205,15 +205,19 @@ li {
   justify-content: space-between;
   align-items: center;
   margin: 4px;
-  padding: 5px 15px;
+  padding: 5px 8px 5px 20px;
+}
+
+.button-div {
+  display: block;
+  min-width: 80px;
+  margin: 0;
+  padding: 0;
 }
 
 li label {
   display: flex;
   gap: 10px;
-
-  /* color: white; */
-  /* padding-left: 20px; */
 }
 
 .completed {
@@ -221,14 +225,19 @@ li label {
   background-color: hsla(0, 2%, 70%, 0.78);
 }
 
-#del-button {
-  font-size: 0.7em;
-  text-align: center;
-  width: 27px;
-  height: 27px;
-  padding: 5px;
-  border-radius: 100%;
-  background-color: rgba(238, 75, 75, 0.9);
+#delete-button,
+#edit-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#del-img,
+#edit-img {
+  width: 35px;
+  height: 35px;
+  margin: 2px;
+  border: none;
 }
 
 @keyframes slide-right {
