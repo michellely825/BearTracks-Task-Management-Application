@@ -8,16 +8,19 @@ const completedTasks = document.getElementById("completed-tasks");
 backButton.addEventListener("click", goBack);
 addButton.addEventListener("click", addTaskToList);
 incompleteTasks.addEventListener("change", moveTask);
+completedTasks.addEventListener("change", moveTask);
 
 function moveTask(e) {
   if (e.target.type == "checkbox") {
     e.target.parentElement.parentElement.remove();
     const task = createTask(e.target.parentElement.textContent);
     if (e.target.checked) {
+      console.log("checked");
       task.querySelector('input[type="checkbox"]').checked = true;
       task.className = "completed";
       completedTasks.append(task);
     } else {
+      console.log("unchecked");
       task.classList.remove("completed");
       incompleteTasks.append(task);
     }
