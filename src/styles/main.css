@@ -187,30 +187,48 @@ h4 {
 .lists {
   width: 90%;
   height: 35%;
-  /* border: 2px solid blue; */
-  /* border-radius: 20px; */
 }
 
-.task-list {
-  /* border: 2px solid red; */
+#incomplete-tasks,
+#completed-tasks {
+  height: 80%;
+  width: 100%;
+  overflow: auto;
 }
 
 li {
   list-style-type: none;
-  /* display: flex; */
-  /* justify-content: space-between; */
-  /* align-items: center; */
+  /* border: 2px solid red; */
+  background-color: hsla(0, 0%, 100%, 0.6);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px;
+  padding: 5px 15px;
 }
 
-#del-button {
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-  border-radius: 100%;
+li label {
+  display: flex;
+  gap: 10px;
+
+  /* color: white; */
+  /* padding-left: 20px; */
 }
 
 .completed {
   text-decoration: line-through;
+  background-color: hsla(0, 2%, 70%, 0.78);
+}
+
+#del-button {
+  font-size: 0.7em;
+  text-align: center;
+  width: 27px;
+  height: 27px;
+  padding: 5px;
+  border-radius: 100%;
+  background-color: rgba(238, 75, 75, 0.9);
 }
 
 @keyframes slide-right {
