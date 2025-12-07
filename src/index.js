@@ -55,11 +55,10 @@ function prevCharacter() {
 
 function updateWelcome(e) {
   console.log(e.target.value);
-  if (usernameInput.value != "" && nameSpan.textContent == "") {
-    nameSpan.textContent += ", ";
+  if (usernameInput.value != "") {
+    nameSpan.textContent = ", " + e.target.value;
   } else if (usernameInput.value == "") {
     nameSpan.textContent = "";
   } else if (usernameInput.value != "" && nameSpan.textContent != "") {
-    nameSpan.textContent = ", " + e.target.value;
   }
 }
