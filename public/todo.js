@@ -58,13 +58,13 @@ function createTask(taskValue) {
 
   buttonDiv.className = "button-div";
 
-  delImg.src = "images/del (1).png";
+  delImg.src = "/src/images/del (1).png";
   delImg.id = "del-img";
   delButton.id = "delete-button";
   delButton.append(delImg);
   delButton.addEventListener("click", removeTask);
 
-  editImg.src = "images/edit1smaller.png";
+  editImg.src = "/src/images/edit1smaller.png";
   editImg.id = "edit-img";
   editButton.id = "edit-button";
 
