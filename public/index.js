@@ -1,6 +1,6 @@
 // Variables
 let charImgIndex = 0;
-let username;
+// let username;
 
 // DOM Elements
 const nameSpan = document.getElementById("name-span");
@@ -12,12 +12,12 @@ const usernameInput = document.getElementById("name-input");
 
 // Data
 const characters = [
-  "images/characters/bear12.png",
-  "images/characters/bunny12.png",
-  "images/characters/fox12.png",
-  "images/characters/chickenwing12.png",
-  "images/characters/lion12.png",
-  "images/characters/panda12.png",
+  "/src/images/characters/bear12.png",
+  "/src/images/characters/bunny12.png",
+  "/src/images/characters/fox12.png",
+  "/src/images/characters/chickenwing12.png",
+  "/src/images/characters/lion12.png",
+  "/src/images/characters/panda12.png",
 ];
 
 // Event listeners
@@ -28,6 +28,7 @@ doneButton.addEventListener("click", beginProgram);
 
 // Functions
 function nextCharacter() {
+  console.log("next clicked");
   charImgIndex++;
   if (charImgIndex >= characters.length) {
     charImgIndex = 0;
@@ -36,6 +37,7 @@ function nextCharacter() {
 }
 
 function prevCharacter() {
+  console.log("prev clicked");
   charImgIndex--;
   if (charImgIndex < 0) {
     charImgIndex = characters.length - 1;
@@ -54,7 +56,10 @@ function updateWelcome(e) {
 
 function beginProgram() {
   if (usernameInput.value != "") {
-    username = usernameInput.value;
+    const username = usernameInput.value;
     window.location.href = `todo.html?`;
+    // return usernameInput.value;
   }
 }
+
+// module.exports = beginProgram;

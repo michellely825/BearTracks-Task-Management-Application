@@ -1,3 +1,5 @@
+// const beginProgram = require("./index");
+// console.log(username);
 const tasks = [];
 const backButton = document.getElementById("back-button");
 const addButton = document.getElementById("add-button");
