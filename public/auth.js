@@ -64,18 +64,11 @@ loginForm.addEventListener("submit", async (e) => {
   }
 });
 // loginButton.addEventListener("click", authenticateUser);
-toSignupButton.addEventListener("click", () => {
-  signupScreen.classList.remove("hidden");
-  loginScreen.classList.add("hidden");
-  updateModeInURL("signup");
-});
+toSignupButton.addEventListener("click", () => updateMode("signup"));
 
 // Sign up Event Listeners
-toLoginButton.addEventListener("click", () => {
-  signupScreen.classList.add("hidden");
-  loginScreen.classList.remove("hidden");
-  updateModeInURL("login");
-});
+toLoginButton.addEventListener("click", () => updateMode("login"));
+
 leftArrow.addEventListener("click", prevCharacter);
 rightArrow.addEventListener("click", nextCharacter);
 
@@ -85,7 +78,19 @@ const updateModeInURL = (mode) => {
   history.replaceState(null, "", url); // replace current URL without reloading
 };
 
-// Sign up Functions
+// Functions
+
+function updateMode(mode) {
+  if (mode === "login") {
+    loginScreen.classList.remove("hidden");
+    signupScreen.classList.add("hidden");
+  } else if (mode === "signup") {
+    loginScreen.classList.add("hidden");
+    signupScreen.classList.remove("hidden");
+  }
+  updateModeInURL(mode);
+}
+
 function nextCharacter() {
   console.log("next clicked");
   charImgIndex++;
