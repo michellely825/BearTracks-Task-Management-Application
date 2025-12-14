@@ -10,14 +10,15 @@ const loginScreen = document.getElementById("log-in");
 const signupScreen = document.getElementById("sign-up");
 
 // Log in DOM
-const loginButton = document.getElementById("login-in-button");
+// const loginButton = document.getElementById("login-in-button");
 const toSignupButton = document.getElementById("switch-to-signup-button");
 const loginForm = document.querySelector("#log-in-form");
 // const loginUsername = document.getElementById("log-in-username");
 // const loginPassword = document.getElementById("log-in-password");
 
 // Sign up DOM
-const signupButton = document.getElementById("sign-up-button");
+// const signupButton = document.getElementById("sign-up-button");
+const signupForm = document.querySelector("#sign-up-form");
 const toLoginButton = document.getElementById("switch-to-login-button");
 const rightArrow = document.getElementById("right-arrow");
 const leftArrow = document.getElementById("left-arrow");
@@ -45,8 +46,6 @@ loginForm.addEventListener("submit", async (e) => {
   const username = document.querySelector("#log-in-username").value.trim();
   const password = document.querySelector("#log-in-password").value;
 
-  // console.log(username, password);
-
   try {
     const response = await fetch(`${BACKEND_URL}/login`, {
       method: "POST",
@@ -68,39 +67,23 @@ loginForm.addEventListener("submit", async (e) => {
 toSignupButton.addEventListener("click", () => {
   signupScreen.classList.remove("hidden");
   loginScreen.classList.add("hidden");
+  updateModeInURL("signup");
 });
 
 // Sign up Event Listeners
-// signupButton.addEventListener("click", authenticateUser);
 toLoginButton.addEventListener("click", () => {
   signupScreen.classList.add("hidden");
   loginScreen.classList.remove("hidden");
+  updateModeInURL("login");
 });
 leftArrow.addEventListener("click", prevCharacter);
 rightArrow.addEventListener("click", nextCharacter);
 
-// General Functions
-
-// async function authenticateUser() {
-//   try {
-//     const response = await fetch(`${BACKEND_URL}/login`, {
-//       method: "POST",
-//       headers: { "Content-Type": "applications/json" },
-//       body: JSON.stringify({
-//         username: loginUsername.value,
-//         password: loginPassword.value,
-//       }),
-//     });
-
-//     if (!response.ok) {
-//       throw new Error("new error bitch");
-//     }
-//     const data = await response.json();
-//     console.log("log in success here is the data in json: ", data);
-//   } catch (error) {
-//     console.error("ERROR BITCH ", error);
-//   }
-// }
+const updateModeInURL = (mode) => {
+  const url = new URL(window.location); // get current URL
+  url.searchParams.set("mode", mode); // update mode param
+  history.replaceState(null, "", url); // replace current URL without reloading
+};
 
 // Sign up Functions
 function nextCharacter() {
@@ -120,3 +103,8 @@ function prevCharacter() {
   }
   charImg.src = characters[charImgIndex];
 }
+
+// function updateCharacter() {
+//   characterImage.src = characters[currentIndex];
+//   characterInput.value = characters[currentIndex]; // this ensures the selected character is submitted
+// }

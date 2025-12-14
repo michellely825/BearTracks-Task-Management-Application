@@ -28,7 +28,7 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  border: 2px solid green;
+  /* border: 2px solid green; */
 }
 
 .form input {
@@ -94,7 +94,7 @@ label {
   animation-direction: alternate;
 }
 
-.choose-char {
+.character-selector {
   display: flex;
   justify-content: center;
   align-items: center;

@@ -10,27 +10,13 @@
   <body>
     <div class="main" id="log-in">
       <h2>Welcome Back!</h2>
-      <form class="form" id="log-in-form" method="POST" action="">
+      <form class="form" id="log-in-form">
         <label for="log-in-username">Username: </label>
         <input type="text" id="log-in-username" />
         <label for="log-in-password">Password: </label>
         <input type="password" id="log-in-password" />
         <button type="submit" class="button">Log in</button>
       </form>
-      <!-- <form name="log-in-form" method="post" action="">
-        <div class="form-group">
-          <label for="log-in-username">Username: </label>
-          <input type="text" id="log-in-username" />
-        </div>
-
-        <div class="form-group">
-          <label for="password">Password: </label>
-          <input type="password" id="password" />
-        </div>
-      </form>
-
-      <button class="button" type="submit" id="login-in-button">Log in</button>
-       -->
       <div class="switch">
         <h5>Don't have an account?</h5>
         <button id="switch-to-signup-button">Sign up</button>
@@ -39,39 +25,44 @@
 
     <div class="main" id="sign-up">
       <h2>Create an Account</h2>
-      <form name="sign-up-form" method="post" action="">
-        <div class="form-group">
-          <label for="sign-up-username">Username: </label>
-          <input type="text" id="sign-up-username" />
-        </div>
-        <div class="form-group">
-          <label for="sign-up-password">Password: </label>
-          <input type="password" id="sign-up-password" />
-        </div>
-      </form>
-      <div class="choose-char">
-        <button class="arrow-button">
+      <form class="form" id="sign-up-form">
+        <label for="sign-up-username">Username: </label>
+        <input type="text" id="sign-up-username" />
+        <label for="sign-up-password">Password: </label>
+        <input type="password" id="sign-up-password" />
+        <div class="character-selector">
+          <button type="button" class="arrow-button">
+            <img
+              id="left-arrow"
+              src="/src/images/arrows/arrow2.png"
+              alt="arrow button"
+            />
+          </button>
           <img
-            id="left-arrow"
-            src="/src/images/arrows/arrow2.png"
-            alt="arrow button"
+            src="/src/images/characters/bear12.png"
+            alt="character"
+            id="character-img"
           />
-        </button>
-        <img
-          src="/src/images/characters/bear12.png"
-          alt="character"
-          id="character-img"
+          <button type="button" class="arrow-button">
+            <img
+              id="right-arrow"
+              src="/src/images/arrows/arrow2.png"
+              alt="arrow button"
+            />
+          </button>
+        </div>
+        <input
+          type="hidden"
+          name="character"
+          id="character-input"
+          value="char1"
         />
-        <button class="arrow-button">
-          <img
-            id="right-arrow"
-            src="/src/images/arrows/arrow2.png"
-            alt="arrow button"
-          />
-        </button>
-      </div>
 
-      <button type="submit" class="button" id="sign-up-button">Sign up</button>
+        <button type="submit" class="button" id="sign-up-button">
+          Sign up
+        </button>
+      </form>
+
       <div class="switch">
         <h5>Already have an account?</h5>
         <button id="switch-to-login-button">Log in</button>
