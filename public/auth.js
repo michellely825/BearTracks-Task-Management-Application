@@ -1,3 +1,4 @@
+// const { response } = require("express");
 const params = new URLSearchParams(window.location.search);
 const mode = params.get("mode");
 
@@ -5,24 +6,19 @@ const mode = params.get("mode");
 const BACKEND_URL = "http://localhost:3000";
 let charImgIndex = 0;
 
-// General DOM
+// Log In DOM
 const loginScreen = document.getElementById("log-in");
-const signupScreen = document.getElementById("sign-up");
-
-// Log in DOM
-// const loginButton = document.getElementById("login-in-button");
-const toSignupButton = document.getElementById("switch-to-signup-button");
 const loginForm = document.querySelector("#log-in-form");
-// const loginUsername = document.getElementById("log-in-username");
-// const loginPassword = document.getElementById("log-in-password");
+const toSignupButton = document.getElementById("switch-to-signup-button");
 
-// Sign up DOM
-// const signupButton = document.getElementById("sign-up-button");
+// Sign In DOM
+const signupScreen = document.getElementById("sign-up");
 const signupForm = document.querySelector("#sign-up-form");
 const toLoginButton = document.getElementById("switch-to-login-button");
 const rightArrow = document.getElementById("right-arrow");
 const leftArrow = document.getElementById("left-arrow");
 const charImg = document.getElementById("character-img");
+// const charInput = document.getElementById("character-input");
 
 // Data
 const characters = [
@@ -40,7 +36,7 @@ if (mode === "login") {
   loginScreen.classList.add("hidden");
 }
 
-// Log in Event Listeners
+// Event Listeners
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const username = document.querySelector("#log-in-username").value.trim();
@@ -60,25 +56,59 @@ loginForm.addEventListener("submit", async (e) => {
       console.log(data);
     }
   } catch (error) {
-    console.error("ERROR BITCH: ", error);
+    console.error("Error logging in...", error);
   }
 });
-// loginButton.addEventListener("click", authenticateUser);
-toSignupButton.addEventListener("click", () => updateMode("signup"));
 
-// Sign up Event Listeners
+signupForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const username = document.getElementById("sign-up-username").value.trim();
+  const password = document.getElementById("sign-up-password").value;
+  // const charInput = document.getElementById("character-input").value;
+
+  try {
+    await fetch(`${BACKEND_URL}/users`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password, charInput }),
+    });
+    if (!response.ok) {
+      throw new Error("new error signing in");
+    }
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error signing in...", error);
+  }
+});
+
+toSignupButton.addEventListener("click", () => updateMode("signup"));
 toLoginButton.addEventListener("click", () => updateMode("login"));
 
-leftArrow.addEventListener("click", prevCharacter);
-rightArrow.addEventListener("click", nextCharacter);
+leftArrow.addEventListener("click", () => {
+  charImgIndex--;
+  if (charImgIndex < 0) {
+    charImgIndex = characters.length - 1;
+  }
+  charImg.src = characters[charImgIndex];
+  charInput = characters[charImgIndex];
+});
+rightArrow.addEventListener("click", () => {
+  charImgIndex--;
+  if (charImgIndex < 0) {
+    charImgIndex = characters.length - 1;
+  }
+  charImg.src = characters[charImgIndex];
+  charInput = characters[charImgIndex];
+  console.log(charInput);
+});
 
 const updateModeInURL = (mode) => {
   const url = new URL(window.location); // get current URL
   url.searchParams.set("mode", mode); // update mode param
   history.replaceState(null, "", url); // replace current URL without reloading
 };
-
-// Functions
 
 function updateMode(mode) {
   if (mode === "login") {
@@ -98,6 +128,7 @@ function nextCharacter() {
     charImgIndex = 0;
   }
   charImg.src = characters[charImgIndex];
+  charInput = characters[charImgIndex];
 }
 
 function prevCharacter() {
@@ -107,9 +138,10 @@ function prevCharacter() {
     charImgIndex = characters.length - 1;
   }
   charImg.src = characters[charImgIndex];
+  charInput = characters[charImgIndex];
 }
 
-// function updateCharacter() {
-//   characterImage.src = characters[currentIndex];
-//   characterInput.value = characters[currentIndex]; // this ensures the selected character is submitted
-// }
+function updateCharacter() {
+  //   characterImage.src = characters[currentIndex];
+  //   characterInput.value = characters[currentIndex]; // this ensures the selected character is submitted
+}

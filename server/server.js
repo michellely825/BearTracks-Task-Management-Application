@@ -17,12 +17,15 @@ app.get("/", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-  console.log("server backend says hi");
-  console.log(req.body);
+  console.log("logging in: ", req.body);
   // res.json(req.body.username);
   // console.log(req.body);
   // res.json({ name: req.body });
   // res.send(req.body);
+});
+
+app.post("/users", (req, res) => {
+  console.log("creating a new user:", req.body);
 });
 
 app.listen(port, () => {
