@@ -10,17 +10,19 @@
   <body>
     <button id="back-button">back</button>
     <div class="main" id="to-do-page">
-      <!-- <h1>Hi, _____</h1> -->
-      <!-- <h1>Here is your dashboard:</h1> -->
-      <h2>Dashboard</h2>
+      <h2>Hi, <span id="username-span"></span></h2>
+      <h3>Here is your dashboard:</h3>
+
       <div id="task-input-and-button">
         <input id="task-input" type="text" placeholder="Add your task..." />
         <button class="button" id="add-button">Add</button>
       </div>
+
       <div class="lists">
         <h4>Tasks:</h4>
         <ul id="incomplete-tasks"></ul>
       </div>
+
       <div class="lists">
         <h4>Completed:</h4>
         <ul id="completed-tasks"></ul>
