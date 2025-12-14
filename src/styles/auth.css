@@ -23,6 +23,18 @@ h2 {
   padding-bottom: 0;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border: 2px solid green;
+}
+
+.form input {
+  width: 100%;
+}
+
 label {
   font-size: clamp(0.8rem, 4vw, 1.5rem);
 }

@@ -10,20 +10,27 @@
   <body>
     <div class="main" id="log-in">
       <h2>Welcome Back!</h2>
-
-      <form name="log-in-form" method="post" action="">
+      <form class="form" id="log-in-form" method="POST" action="">
+        <label for="log-in-username">Username: </label>
+        <input type="text" id="log-in-username" />
+        <label for="log-in-password">Password: </label>
+        <input type="password" id="log-in-password" />
+        <button type="submit" class="button">Log in</button>
+      </form>
+      <!-- <form name="log-in-form" method="post" action="">
         <div class="form-group">
-          <label for="log-in-name">Username: </label>
-          <input type="text" id="log-in-name" />
+          <label for="log-in-username">Username: </label>
+          <input type="text" id="log-in-username" />
         </div>
 
         <div class="form-group">
-          <label for="log-in-password">Password: </label>
-          <input type="password" id="log-in-password" />
+          <label for="password">Password: </label>
+          <input type="password" id="password" />
         </div>
       </form>
-      <button class="button" type="submit">Log in</button>
 
+      <button class="button" type="submit" id="login-in-button">Log in</button>
+       -->
       <div class="switch">
         <h5>Don't have an account?</h5>
         <button id="switch-to-signup-button">Sign up</button>
@@ -34,8 +41,8 @@
       <h2>Create an Account</h2>
       <form name="sign-up-form" method="post" action="">
         <div class="form-group">
-          <label for="sign-up-name">Username: </label>
-          <input type="text" id="sign-up-name" />
+          <label for="sign-up-username">Username: </label>
+          <input type="text" id="sign-up-username" />
         </div>
         <div class="form-group">
           <label for="sign-up-password">Password: </label>
@@ -64,7 +71,7 @@
         </button>
       </div>
 
-      <button type="submit" class="button">Sign up</button>
+      <button type="submit" class="button" id="sign-up-button">Sign up</button>
       <div class="switch">
         <h5>Already have an account?</h5>
         <button id="switch-to-login-button">Log in</button>

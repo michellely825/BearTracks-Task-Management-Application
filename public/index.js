@@ -1,6 +1,3 @@
-// Variables
-const BACKEND_URL = "http://localhost:3000";
-
 // DOM Elements
 const logInButton = document.getElementById("log-in-button");
 const signUpButton = document.getElementById("sign-up-button");

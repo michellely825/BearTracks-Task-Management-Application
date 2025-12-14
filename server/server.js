@@ -9,13 +9,16 @@ app.use(
   })
 );
 
+// Middleware to parse JSON body because Express can't do it automatically
+app.use(express.json());
+
 app.get("/", (req, res) => {
-  console.log(req.body);
   res.send("bellooo");
-  console.log("CONSOLE BITCH");
 });
 
-app.post("/users", (req, res) => {
+app.post("/login", (req, res) => {
+  console.log("server backend says hi");
+  console.log(req.body);
   // res.json(req.body.username);
   // console.log(req.body);
   // res.json({ name: req.body });
