@@ -1,7 +1,5 @@
 // Variables
-// let charImgIndex = 0;
 const BACKEND_URL = "http://localhost:3000";
-// let username;
 
 // DOM Elements
 const logInButton = document.getElementById("log-in-button");
@@ -21,7 +19,6 @@ signUpButton.addEventListener("click", () => {
 // doneButton.addEventListener("click", beginProgram);
 
 // Functions
-
 // function updateWelcome(e) {
 //   // console.log(e.target.value);
 //   if (usernameInput.value != "") {
