@@ -1,12 +1,11 @@
 h2 {
-  /* font-size: clamp(1.5rem 2vw 1rem); */
-  font-size: 3em;
+  font-size: clamp(1rem, 15vw, 3.5rem);
   margin-top: 20px;
   padding: 10px;
 }
 
 .form-group {
-  margin: 10px 0 25px 0;
+  margin: 10px 15px 25px 15px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -16,14 +15,24 @@ h2 {
 
 .form-group input {
   width: 250px;
+  margin-left: 5px;
+}
+
+#sign-up .form-group {
+  margin: 0;
+  padding-bottom: 0;
 }
 
 label {
   font-size: clamp(0.8rem, 4vw, 1.5rem);
 }
 
-input {
-  margin-left: 5px;
+.switch {
+  margin-top: 15px;
+  margin-bottom: 30px;
+  font-size: 1.2em;
+  text-align: center;
+  line-height: 0;
 }
 
 .switch button {
@@ -38,19 +47,6 @@ input {
 
 .switch button:hover {
   transform: scale(1.05);
-}
-
-.switch {
-  margin-top: 15px;
-  margin-bottom: 30px;
-  font-size: 1.2em;
-  text-align: center;
-  line-height: 0;
-}
-
-#sign-up .form-group {
-  margin: 0;
-  padding-bottom: 0;
 }
 
 .arrow-button #left-arrow {

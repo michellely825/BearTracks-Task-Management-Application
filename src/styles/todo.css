@@ -20,7 +20,7 @@
 
 h4 {
   font-size: 1.7em;
-  color: darkcyan;
+  color: rgb(84, 127, 170);
 }
 
 .lists {
@@ -44,6 +44,11 @@ li {
   align-items: center;
   margin: 4px;
   padding: 5px 8px 5px 20px;
+}
+
+li label {
+  display: flex;
+  gap: 10px;
 }
 
 #add-button {
