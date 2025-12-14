@@ -54,10 +54,11 @@ h2 {
 }
 
 #character-img {
-  width: 30vw;
-  min-width: 180px;
-  max-width: 230px;
+  width: 40vw;
+  min-width: 130px;
+  max-width: 240px;
   margin-top: 20px;
+  padding: 5px 10px 10px 10px;
   /* height: 35vh; */
   /* max-height: 270px; */
   filter: drop-shadow(0 0 12px rgb(160, 157, 157));
