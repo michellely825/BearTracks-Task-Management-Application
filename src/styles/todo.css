@@ -1,38 +1,43 @@
-#del-img,
-#edit-img {
-  width: 35px;
-  height: 35px;
-  margin: 2px;
-  border: none;
+#to-do-page {
+  height: 75vh;
+  width: 80vw;
 }
 
-.completed {
-  text-decoration: line-through;
-  background-color: hsla(0, 0%, 76%, 0.492);
+#task-input-and-button {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  width: 90%;
+  height: 22%;
+  margin: 25px;
+  filter: drop-shadow(0 0 5px rgb(206, 198, 159));
 }
 
-#delete-button,
-#edit-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
+#task-input {
+  filter: none;
+  height: 100%;
+  width: 85%;
 }
 
-h4 {
-  font-size: 1.7em;
-  color: rgb(84, 127, 170);
+#add-button {
+  border-radius: 25px;
+  width: 24%;
+  min-width: 70px;
+  max-width: 100px;
+  height: 100%;
+  padding: 5px;
+  font-size: 1em;
+  margin-right: 0;
+  filter: none;
 }
 
 .lists {
   width: 90%;
   height: 100%;
-}
-
-#incomplete-tasks,
-#completed-tasks {
-  height: 80%;
-  width: 100%;
-  overflow: auto;
+  font-size: 1.7em;
+  color: rgb(84, 127, 170);
 }
 
 li {
@@ -47,36 +52,43 @@ li {
 }
 
 li label {
-  display: flex;
   gap: 10px;
-}
-
-#add-button {
-  border-radius: 25px;
-  width: 24%;
-  min-width: 70px;
-  max-width: 100px;
-  height: 100%;
-  padding: 5px;
-  font-size: 1em;
-}
-
-#to-do-page {
-  height: 75vh;
-  width: 80vw;
-}
-
-#task-input {
-  filter: none;
-}
-
-#task-input-and-button {
-  background-color: white;
+  font-size: 0.7em;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  border-radius: 20px;
-  width: 90%;
-  height: 22%;
-  margin: 25px;
-  /* margin-bottom: 30px; */
+  color: black;
+}
+
+.task-buttons-div {
+  display: flex;
+  justify-content: flex-end;
+  /* border: 2px solid red; */
+}
+
+#delete-button,
+#edit-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#del-img,
+#edit-img {
+  width: 35px;
+  height: 35px;
+  margin: 2px;
+  border: none;
+}
+
+#incomplete-tasks,
+#completed-tasks {
+  height: 80%;
+  width: 100%;
+  overflow: auto;
+}
+
+.completed {
+  text-decoration: line-through;
+  background-color: hsla(0, 0%, 76%, 0.492);
 }

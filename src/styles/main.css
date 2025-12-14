@@ -103,6 +103,10 @@ input[type="password"] {
   font-size: 1.4em;
 }
 
+input[type="checkbox"] {
+  filter: none;
+}
+
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
 }

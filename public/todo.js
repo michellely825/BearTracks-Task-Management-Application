@@ -58,7 +58,7 @@ function createTask(taskValue) {
   tLabel.textContent = taskValue;
   tLabel.prepend(tInput);
 
-  buttonDiv.className = "button-div";
+  buttonDiv.className = "task-buttons-div";
 
   delImg.src = "/src/images/del (1).png";
   delImg.id = "del-img";
