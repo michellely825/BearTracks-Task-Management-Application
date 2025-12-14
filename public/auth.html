@@ -4,19 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Authorization Page</title>
-    <style src="/src/styles/main.css"></style>
+    <link rel="stylesheet" href="/src/styles/main.css" />
   </head>
   <body>
     <div class="main" id="log-in">
       <h1>Welcome Back!</h1>
       <form name="log-in-form" method="post" action="">
         <div class="form-group">
-          <label for="sign-in-name">Username: </label>
-          <input type="text" id="sign-in-name" />
+          <label for="log-in-name">Username: </label>
+          <input type="text" id="log-in-name" />
         </div>
         <div class="form-group">
-          <label for="sign-in-password">Password: </label>
-          <input type="password" id="sign-in-password" />
+          <label for="log-in-password">Password: </label>
+          <input type="password" id="log-in-password" />
         </div>
         <button type="submit">Log in</button>
         <div class="switch">
@@ -36,6 +36,29 @@
           <label for="sign-up-password">Password: </label>
           <input type="password" id="sign-up-password" />
         </div>
+        <div class="choose-char">
+          <h5>Choose a character:</h5>
+          <button class="arrow-button">
+            <img
+              id="left-arrow"
+              src="/src/images/arrows/arrow2.png"
+              alt="arrow button"
+            />
+          </button>
+          <img
+            src="/src/images/characters/bear12.png"
+            alt="character"
+            id="character-img"
+          />
+          <button class="arrow-button">
+            <img
+              id="right-arrow"
+              src="/src/images/arrows/arrow2.png"
+              alt="arrow button"
+            />
+          </button>
+        </div>
+
         <button type="submit">Sign up</button>
         <div class="switch">
           <h5>Already haven an account?</h5>

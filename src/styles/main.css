@@ -14,10 +14,16 @@
 
 body {
   background-color: rgb(173, 219, 237);
+  background-image: url("/src/images/beartracks (1).png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .main {
@@ -43,6 +49,9 @@ body {
 #welcome-to-msg {
   display: block;
   font-weight: 500;
+}
+#welcome-msg {
+  margin-bottom: 40px;
 }
 
 #back-button {
@@ -147,7 +156,19 @@ img {
   background-color: rgb(238, 75, 75);
   color: white;
   border: none;
+  border-radius: 25px;
   cursor: pointer;
+  width: 100%;
+  min-width: 70px;
+  padding: 5px;
+  font-size: 1.2em;
+  margin: 5px;
+  height: 10%;
+  filter: drop-shadow(0 0 10px rgb(219, 200, 154));
+}
+
+.button:hover {
+  background-color: rgba(238, 75, 75, 0.9);
 }
 
 #add-button,
