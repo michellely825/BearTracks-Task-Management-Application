@@ -5,28 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Authorization Page</title>
     <link rel="stylesheet" href="/src/styles/main.css" />
+    <link rel="stylesheet" href="/src/styles/auth.css" />
   </head>
   <body>
     <div class="main" id="log-in">
-      <h1>Welcome Back!</h1>
+      <h2>Welcome Back!</h2>
+
       <form name="log-in-form" method="post" action="">
         <div class="form-group">
           <label for="log-in-name">Username: </label>
           <input type="text" id="log-in-name" />
         </div>
+
         <div class="form-group">
           <label for="log-in-password">Password: </label>
           <input type="password" id="log-in-password" />
         </div>
-        <button type="submit">Log in</button>
-        <div class="switch">
-          <h5>Don't have an account?</h5>
-          <button id="switch-to-signup-button">Sign up</button>
-        </div>
       </form>
+      <button class="button" type="submit">Log in</button>
+
+      <div class="switch">
+        <h5>Don't have an account?</h5>
+        <button id="switch-to-signup-button">Sign up</button>
+      </div>
     </div>
+
     <div class="main" id="sign-up">
-      <h1>Sign up</h1>
+      <h2>Create an Account</h2>
       <form name="sign-up-form" method="post" action="">
         <div class="form-group">
           <label for="sign-up-name">Username: </label>
@@ -37,7 +42,7 @@
           <input type="password" id="sign-up-password" />
         </div>
         <div class="choose-char">
-          <h5>Choose a character:</h5>
+          <!-- <h5>Choose a character:</h5> -->
           <button class="arrow-button">
             <img
               id="left-arrow"
@@ -58,13 +63,12 @@
             />
           </button>
         </div>
-
-        <button type="submit">Sign up</button>
-        <div class="switch">
-          <h5>Already haven an account?</h5>
-          <button id="switch-to-login-button">Log in</button>
-        </div>
       </form>
+      <button type="submit" class="button">Sign up</button>
+      <div class="switch">
+        <h5>Already haven an account?</h5>
+        <button id="switch-to-login-button">Log in</button>
+      </div>
     </div>
 
     <script src="auth.js"></script>

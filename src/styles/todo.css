@@ -1,0 +1,77 @@
+#del-img,
+#edit-img {
+  width: 35px;
+  height: 35px;
+  margin: 2px;
+  border: none;
+}
+
+.completed {
+  text-decoration: line-through;
+  background-color: hsla(0, 0%, 76%, 0.492);
+}
+
+#delete-button,
+#edit-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+h4 {
+  font-size: 1.7em;
+  color: darkcyan;
+}
+
+.lists {
+  width: 90%;
+  height: 100%;
+}
+
+#incomplete-tasks,
+#completed-tasks {
+  height: 80%;
+  width: 100%;
+  overflow: auto;
+}
+
+li {
+  list-style-type: none;
+  background-color: hsla(0, 0%, 100%, 0.6);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px;
+  padding: 5px 8px 5px 20px;
+}
+
+#add-button {
+  border-radius: 25px;
+  width: 24%;
+  min-width: 70px;
+  max-width: 100px;
+  height: 100%;
+  padding: 5px;
+  font-size: 1em;
+}
+
+#to-do-page {
+  height: 75vh;
+  width: 80vw;
+}
+
+#task-input {
+  filter: none;
+}
+
+#task-input-and-button {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 20px;
+  width: 90%;
+  height: 22%;
+  margin: 25px;
+  /* margin-bottom: 30px; */
+}

@@ -9,7 +9,6 @@
   margin: 0;
   padding: 0;
   font-family: Montserrat;
-  /* background-color: rgb(173, 219, 237); */
 }
 
 body {
@@ -27,39 +26,29 @@ body {
 }
 
 .main {
-  width: 62vw;
-  max-width: 600px;
-  height: 60vh;
-  background-color: rgb(244, 236, 200);
-  border: 4px solid rgb(206, 198, 159);
-  border-radius: 80px;
-  padding: 20px 60px;
+  width: 70vw;
+  max-width: 630px;
+  height: 70vh;
+  max-height: 550px;
+  padding: 0px 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: rgb(244, 236, 200);
+  border: 4px solid rgb(206, 198, 159);
+  border-radius: 80px;
   filter: drop-shadow(0 0 15px rgb(122, 154, 159));
-}
-
-#to-do-page {
-  height: 75vh;
-  width: 80vw;
 }
 
 #welcome-to-msg {
   display: block;
   font-weight: 500;
-}
-#welcome-msg {
-  margin-bottom: 40px;
+  font-size: 0.85em;
 }
 
-#back-button {
-  margin: 0px;
-}
-
-.main h2 {
-  font-size: 3em;
+h2 {
+  font-size: clamp(0.8rem, 8vw, 4rem);
   color: rgb(84, 127, 170);
   text-align: center;
 }
@@ -68,58 +57,93 @@ body {
   width: 30vw;
   min-width: 180px;
   max-width: 230px;
+  margin-top: 20px;
   /* height: 35vh; */
   /* max-height: 270px; */
   filter: drop-shadow(0 0 12px rgb(160, 157, 157));
   animation: float 2s infinite ease-in-out;
 }
 
-.choose-char {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-img {
-  vertical-align: middle;
-}
-
-.arrow-button #left-arrow {
-  transform: scaleX(-1);
-}
-
-.arrow-button {
+/* TODO: ADD SOME SHADING TO THE BUTTON WHEN YOU CLICK? */
+.button {
+  background-color: rgb(238, 75, 75);
+  color: white;
   border: none;
-  background-color: transparent;
+  border-radius: 25px;
   cursor: pointer;
-  margin: 10%;
+  width: 80%;
+  min-width: 70px;
+  padding: 4px;
+  font-size: 1.2em;
+  margin: 5px;
+  height: 40px;
+  filter: drop-shadow(0 0 10px rgb(219, 200, 154));
+}
+#sign-up-button {
+  margin-bottom: 30px;
 }
 
-.arrow-button img {
-  width: 8vw;
-  max-width: 70px;
-  -webkit-user-drag: none;
+.button:hover {
+  background-color: rgba(238, 75, 75, 0.85);
+  transform: scale(1.05);
 }
 
-#left-arrow:hover {
-  animation-name: slide-left;
-  animation-duration: 0.5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-direction: alternate;
+input {
+  border: none;
+  border-radius: 20px;
+  font-size: 1.1em;
+  padding-left: 15px;
+  height: 30px;
+  filter: drop-shadow(0 0 5px rgb(206, 198, 159));
 }
 
-#right-arrow:hover {
-  animation-name: slide-right;
-  animation-duration: 0.5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-direction: alternate;
+input[type="password"] {
+  font-size: 1.4em;
 }
 
-.name-input-and-button {
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+}
+
+input:focus {
+  outline: none;
+}
+
+.button-div {
+  display: block;
+  min-width: 80px;
+  margin: 0;
+  padding: 0;
+}
+
+li label {
+  display: flex;
+  gap: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes slide-right {
+  50% {
+    transform: translateX(10px);
+  }
+}
+
+@keyframes slide-left {
+  50% {
+    transform: scaleX(-1) translateX(10px);
+  }
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* .name-input-and-button {
   width: 75%;
   min-width: 300px;
   height: 35px;
@@ -147,153 +171,6 @@ img {
 }
 
 /* removed browser's autofill background color */
-.name-input-and-button input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
-}
-
-/* TODO: ADD SOME SHADING TO THE BUTTON WHEN YOU CLICK? */
-.button {
-  background-color: rgb(238, 75, 75);
-  color: white;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  width: 100%;
-  min-width: 70px;
-  padding: 5px;
-  font-size: 1.2em;
-  margin: 5px;
-  height: 10%;
-  filter: drop-shadow(0 0 10px rgb(219, 200, 154));
-}
-
-.button:hover {
-  background-color: rgba(238, 75, 75, 0.9);
-}
-
-#add-button,
-#done-button {
-  border-radius: 25px;
-  width: 24%;
-  min-width: 70px;
-  max-width: 100px;
-  height: 100%;
-  padding: 5px;
-  font-size: 1em;
-}
-
-#task-input-and-button {
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  border-radius: 20px;
-  width: 90%;
-  height: 22%;
-  filter: drop-shadow(0 0 5px rgb(206, 198, 159));
-  margin: 25px;
-  /* margin-bottom: 30px; */
-}
-
-#task-input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
-}
-
-#task-input {
-  border: none;
-  border-radius: 20px;
-  width: 75%;
-  padding-left: 15px;
-  font-size: 1.1em;
-}
-
-#task-input:focus {
-  outline: none;
-}
-
-h4 {
-  font-size: 1.7em;
-  color: darkcyan;
-}
-
-.lists {
-  width: 90%;
-  height: 100%;
-}
-
-#incomplete-tasks,
-#completed-tasks {
-  height: 80%;
-  width: 100%;
-  overflow: auto;
-}
-
-li {
-  list-style-type: none;
-  /* border: 2px solid red; */
-  background-color: hsla(0, 0%, 100%, 0.6);
-  border-radius: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 4px;
-  padding: 5px 8px 5px 20px;
-}
-
-.button-div {
-  display: block;
-  min-width: 80px;
-  margin: 0;
-  padding: 0;
-}
-
-li label {
-  display: flex;
-  gap: 10px;
-}
-
-.completed {
-  text-decoration: line-through;
-  background-color: hsla(0, 0%, 76%, 0.492);
-}
-
-#delete-button,
-#edit-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-#del-img,
-#edit-img {
-  width: 35px;
-  height: 35px;
-  margin: 2px;
-  border: none;
-}
-
-.switch {
-  /* border: 2px solid red; */
-  text-align: center;
-}
-
-.hidden {
-  display: none;
-}
-
-@keyframes slide-right {
-  50% {
-    transform: translateX(10px);
-  }
-}
-
-@keyframes slide-left {
-  50% {
-    transform: scaleX(-1) translateX(10px);
-  }
-}
-
-@keyframes float {
-  50% {
-    transform: translateY(-8px);
-  }
-}
+/* .name-input-and-button input:-webkit-autofill { */
+/* -webkit-box-shadow: 0 0 0 1000px #fff inset !important; */
+/* } */
