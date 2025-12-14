@@ -1,12 +1,15 @@
 @font-face {
   font-family: Montserrat;
   src: url(../fonts/Montserrat-VariableFont_wght.ttf);
+  font-weight: 100 900;
+  font-style: normal;
 }
 
 * {
   margin: 0;
   padding: 0;
   font-family: Montserrat;
+  /* background-color: rgb(173, 219, 237); */
 }
 
 body {
@@ -29,12 +32,17 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 0 10px rgb(122, 154, 159));
+  filter: drop-shadow(0 0 15px rgb(122, 154, 159));
 }
 
 #to-do-page {
   height: 75vh;
   width: 80vw;
+}
+
+#welcome-to-msg {
+  display: block;
+  font-weight: 500;
 }
 
 #back-button {
@@ -45,15 +53,15 @@ body {
   font-size: 3em;
   color: rgb(84, 127, 170);
   text-align: center;
-  margin-top: 25px;
 }
 
 #character-img {
-  width: 35vw;
-  max-width: 270px;
+  width: 30vw;
+  min-width: 180px;
+  max-width: 230px;
   /* height: 35vh; */
   /* max-height: 270px; */
-  filter: drop-shadow(0 0 7px rgb(160, 157, 157));
+  filter: drop-shadow(0 0 12px rgb(160, 157, 157));
   animation: float 2s infinite ease-in-out;
 }
 
@@ -158,8 +166,8 @@ img {
   display: flex;
   justify-content: space-between;
   border-radius: 20px;
-  height: 35px;
   width: 90%;
+  height: 22%;
   filter: drop-shadow(0 0 5px rgb(206, 198, 159));
   margin: 25px;
   /* margin-bottom: 30px; */
@@ -240,6 +248,15 @@ li label {
   height: 35px;
   margin: 2px;
   border: none;
+}
+
+.switch {
+  /* border: 2px solid red; */
+  text-align: center;
+}
+
+.hidden {
+  display: none;
 }
 
 @keyframes slide-right {
