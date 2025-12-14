@@ -11,6 +11,7 @@ const rightArrow = document.getElementById("right-arrow");
 const leftArrow = document.getElementById("left-arrow");
 const charImg = document.getElementById("character-img");
 
+// Data
 const characters = [
   "/src/images/characters/bear12.png",
   "/src/images/characters/bunny12.png",

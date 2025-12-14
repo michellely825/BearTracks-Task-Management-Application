@@ -8,20 +8,7 @@ const logInButton = document.getElementById("log-in-button");
 const signUpButton = document.getElementById("sign-up-button");
 // const nameSpan = document.getElementById("name-span");
 // const doneButton = document.getElementById("done-button");
-// const charImg = document.getElementById("character-img");
-// const rightArrow = document.getElementById("right-arrow");
-// const leftArrow = document.getElementById("left-arrow");
 // const usernameInput = document.getElementById("name-input");
-
-// Data
-// const characters = [
-//   "/src/images/characters/bear12.png",
-//   "/src/images/characters/bunny12.png",
-//   "/src/images/characters/fox12.png",
-//   "/src/images/characters/chickenwing12.png",
-//   "/src/images/characters/lion12.png",
-//   "/src/images/characters/panda12.png",
-// ];
 
 // Event listeners
 logInButton.addEventListener("click", () => {
@@ -30,31 +17,10 @@ logInButton.addEventListener("click", () => {
 signUpButton.addEventListener("click", () => {
   window.location.href = "auth.html?mode=signup";
 });
-// leftArrow.addEventListener("click", prevCharacter);
-// rightArrow.addEventListener("click", nextCharacter);
 // usernameInput.addEventListener("input", updateWelcome);
 // doneButton.addEventListener("click", beginProgram);
 
 // Functions
-function authenticateUser(mode) {}
-
-// function nextCharacter() {
-//   console.log("next clicked");
-//   charImgIndex++;
-//   if (charImgIndex >= characters.length) {
-//     charImgIndex = 0;
-//   }
-//   charImg.src = characters[charImgIndex];
-// }
-
-// function prevCharacter() {
-//   console.log("prev clicked");
-//   charImgIndex--;
-//   if (charImgIndex < 0) {
-//     charImgIndex = characters.length - 1;
-//   }
-//   charImg.src = characters[charImgIndex];
-// }
 
 // function updateWelcome(e) {
 //   // console.log(e.target.value);
