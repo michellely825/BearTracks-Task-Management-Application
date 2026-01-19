@@ -1,6 +1,7 @@
 // const beginProgram = require("./index");
 // console.log(username);
-const tasks = [];
+// const tasks = [];
+const BACKEND_URL = "http://localhost:3000";
 const backButton = document.getElementById("back-button");
 const addButton = document.getElementById("add-button");
 const taskInput = document.getElementById("task-input");
@@ -8,9 +9,13 @@ const incompleteTasks = document.getElementById("incomplete-tasks");
 const completedTasks = document.getElementById("completed-tasks");
 
 backButton.addEventListener("click", goBack);
-addButton.addEventListener("click", addTaskToList);
+addButton.addEventListener("click", addTask);
 incompleteTasks.addEventListener("change", moveTask);
 completedTasks.addEventListener("change", moveTask);
+
+function goBack() {
+  window.location.href = `index.html`;
+}
 
 function moveTask(e) {
   if (e.target.type == "checkbox") {
@@ -29,17 +34,50 @@ function moveTask(e) {
   }
 }
 
-function goBack() {
-  window.location.href = `index.html`;
+async function addTask() {
+  const task = captureTask();
+  if (!task) return; // stop if input is empty
+  const savedTask = await sendTaskToServer(task);
+  if (!savedTask) return; // stop if server fails and returns null
+  addTaskToDOM(savedTask.task);
 }
 
-function addTaskToList() {
-  if (taskInput.value != "") {
-    tasks.push(taskInput.value);
-    incompleteTasks.append(createTask(taskInput.value));
+// reads what the user typed
+function captureTask() {
+  const task = taskInput.value;
+  if (task != "") {
+    console.log(task);
     taskInput.value = "";
-    console.log(tasks);
+    return task;
   }
+  return null;
+}
+
+// adds task to DB
+async function sendTaskToServer(task) {
+  try {
+    const response = await fetch(`${BACKEND_URL}/todos`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ task }), // converts task obj to JSON string
+    });
+
+    if (!response.ok) {
+      throw new Error("bad server response - error adding task binch");
+    } else {
+      const savedTask = await response.json(); // converts JSON to JS object
+      console.log("task", savedTask);
+      return savedTask;
+    }
+  } catch (error) {
+    console.error("Sowy network error - can't add task to db...", error);
+    return null;
+  }
+}
+
+// updates UI
+function addTaskToDOM(task) {
+  incompleteTasks.append(createTask(task));
 }
 
 function createTask(taskValue) {

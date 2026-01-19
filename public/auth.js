@@ -5,6 +5,7 @@ const mode = params.get("mode");
 // Variables
 const BACKEND_URL = "http://localhost:3000";
 let charImgIndex = 0;
+let charInput;
 
 // Log In DOM
 const loginScreen = document.getElementById("log-in");
@@ -18,7 +19,6 @@ const toLoginButton = document.getElementById("switch-to-login-button");
 const rightArrow = document.getElementById("right-arrow");
 const leftArrow = document.getElementById("left-arrow");
 const charImg = document.getElementById("character-img");
-// const charInput = document.getElementById("character-input");
 
 // Data
 const characters = [
@@ -65,7 +65,6 @@ signupForm.addEventListener("submit", async (e) => {
 
   const username = document.getElementById("sign-up-username").value.trim();
   const password = document.getElementById("sign-up-password").value;
-  // const charInput = document.getElementById("character-input").value;
 
   try {
     await fetch(`${BACKEND_URL}/users`, {
@@ -86,23 +85,8 @@ signupForm.addEventListener("submit", async (e) => {
 toSignupButton.addEventListener("click", () => updateMode("signup"));
 toLoginButton.addEventListener("click", () => updateMode("login"));
 
-leftArrow.addEventListener("click", () => {
-  charImgIndex--;
-  if (charImgIndex < 0) {
-    charImgIndex = characters.length - 1;
-  }
-  charImg.src = characters[charImgIndex];
-  charInput = characters[charImgIndex];
-});
-rightArrow.addEventListener("click", () => {
-  charImgIndex--;
-  if (charImgIndex < 0) {
-    charImgIndex = characters.length - 1;
-  }
-  charImg.src = characters[charImgIndex];
-  charInput = characters[charImgIndex];
-  console.log(charInput);
-});
+leftArrow.addEventListener("click", prevCharacter);
+rightArrow.addEventListener("click", nextCharacter);
 
 const updateModeInURL = (mode) => {
   const url = new URL(window.location); // get current URL
@@ -121,6 +105,7 @@ function updateMode(mode) {
   updateModeInURL(mode);
 }
 
+// Sign Up Functions for Character Selection
 function nextCharacter() {
   console.log("next clicked");
   charImgIndex++;
@@ -139,9 +124,4 @@ function prevCharacter() {
   }
   charImg.src = characters[charImgIndex];
   charInput = characters[charImgIndex];
-}
-
-function updateCharacter() {
-  //   characterImage.src = characters[currentIndex];
-  //   characterInput.value = characters[currentIndex]; // this ensures the selected character is submitted
 }
