@@ -21,10 +21,11 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Get all tasks (not fully implemented yet)
 router.get("/", async (req, res) => {
   try {
-    const tasks = await Todo.find({});
-    res.json(tasks);
+    const todos = await Todo.find({}).populate("user", "username"); // populate() allows every todo to come with username now
+    res.json(todos);
   } catch (error) {
     res.status(500).json({ error: "server error unfortunately" });
   }

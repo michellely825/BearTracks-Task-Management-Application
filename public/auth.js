@@ -5,7 +5,7 @@ const mode = params.get("mode");
 // Variables
 const BACKEND_URL = "http://localhost:3000";
 let charImgIndex = 0;
-let charInput;
+let charInput = "/src/images/characters/bear12.png";
 
 // Log In DOM
 const loginScreen = document.getElementById("log-in");
@@ -65,7 +65,6 @@ signupForm.addEventListener("submit", async (e) => {
 
   const username = document.getElementById("sign-up-username").value.trim();
   const password = document.getElementById("sign-up-password").value;
-
   try {
     const response = await fetch(`${BACKEND_URL}/users`, {
       method: "POST",
@@ -73,12 +72,12 @@ signupForm.addEventListener("submit", async (e) => {
       body: JSON.stringify({ username, password, charInput }),
     });
     if (!response.ok) {
-      throw new Error("new error signing in");
+      throw new Error("bad request - HTTP error: ", response.status); // stops execution and jumps to nearest catch block
     }
     const data = await response.json();
-    console.log(data);
+    console.log("new user successfully added:", data);
   } catch (error) {
-    console.error("Error signing in...", error);
+    console.error("Error in POST /users.", error.message); // handles thrown errors
   }
 });
 
