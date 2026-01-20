@@ -12,6 +12,7 @@ logInButton.addEventListener("click", () => {
 signUpButton.addEventListener("click", () => {
   window.location.href = "auth.html?mode=signup";
 });
+
 // usernameInput.addEventListener("input", updateWelcome);
 // doneButton.addEventListener("click", beginProgram);
 

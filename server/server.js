@@ -1,3 +1,5 @@
+// starts the server, configures milldeware and connects to MongoDB
+
 // Imports
 const express = require("express");
 const cors = require("cors");
@@ -30,8 +32,9 @@ mongoose
   })
   .catch((err) => console.error("MongoDB connection error:", err));
 
+// mount the routers aka whenever a route starts with "__", send it to __Routes
 app.use("/todos", todoRoutes);
 app.use("/users", userRoutes);
 
 // test route
-app.get("/", (req, res) => res.send("bellooo"));
+// app.get("/", (req, res) => res.send("bellooo"));

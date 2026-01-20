@@ -67,7 +67,7 @@ signupForm.addEventListener("submit", async (e) => {
   const password = document.getElementById("sign-up-password").value;
 
   try {
-    await fetch(`${BACKEND_URL}/users`, {
+    const response = await fetch(`${BACKEND_URL}/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password, charInput }),
