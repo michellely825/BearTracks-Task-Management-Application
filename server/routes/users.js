@@ -7,13 +7,17 @@ router.post("/", async (req, res) => {
   try {
     const { username, password, charInput } = req.body;
     if (!username || !password || !charInput) {
-      return res
-        .status(400)
-        .json({ error: "Bad request, missing required info" });
+      return res.status(400).json({
+        error: "Signup failed: Missing required info",
+      });
     }
-    const newUser = await User.create({ username, password, charInput });
-    console.log("new user", newUser);
-    res.status(201).json({ message: "User received", user: newUser });
+    const { username: name, charInput: char } = await User.create({
+      username,
+      password,
+      charInput,
+    });
+    res.status(201).json({ username: name, charInput: char });
+    console.log("hello server, new user incoming:", username, charInput);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "server error unfortunately" });

@@ -72,12 +72,14 @@ signupForm.addEventListener("submit", async (e) => {
       body: JSON.stringify({ username, password, charInput }),
     });
     if (!response.ok) {
-      throw new Error("bad request - HTTP error: ", response.status); // stops execution and jumps to nearest catch block
+      const errorData = await response.json();
+      throw new Error(errorData.error); // stops execution and jumps to nearest catch block
     }
     const data = await response.json();
-    console.log("new user successfully added:", data);
+    console.log("User created:", data.username);
+    window.location.href = `dashboard.html?username=${data.username}`;
   } catch (error) {
-    console.error("Error in POST /users.", error.message); // handles thrown errors
+    console.error("Signup failed:", error.message); // handles thrown errors
   }
 });
 
@@ -123,4 +125,8 @@ function prevCharacter() {
   }
   charImg.src = characters[charImgIndex];
   charInput = characters[charImgIndex];
+}
+
+function authenticateUser() {
+  window.location.href = `dashboard.html?username=${data.username}`;
 }
