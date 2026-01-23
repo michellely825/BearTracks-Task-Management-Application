@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 
 const todoRoutes = require("./routes/todos");
 const userRoutes = require("./routes/users");
+const loginRoutes = require("./routes/logins");
 
 // Middleware
 const app = express();
@@ -35,6 +36,7 @@ mongoose
 // mount the routers aka whenever a route starts with "__", send it to __Routes
 app.use("/todos", todoRoutes);
 app.use("/users", userRoutes);
+app.use("/login", loginRoutes);
 
 // test route
 // app.get("/", (req, res) => res.send("bellooo"));

@@ -41,7 +41,6 @@ loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const username = document.querySelector("#log-in-username").value.trim();
   const password = document.querySelector("#log-in-password").value;
-
   try {
     const response = await fetch(`${BACKEND_URL}/login`, {
       method: "POST",
@@ -51,9 +50,9 @@ loginForm.addEventListener("submit", async (e) => {
     const data = await response.json();
     if (!response.ok) {
       throw new Error(data.error);
-    } else {
-      console.log(data);
     }
+    window.location.href = `dashboard.html?username=${username}`;
+    console.log("Successfully logged in:", username);
   } catch (error) {
     console.error(error.message);
   }
@@ -74,7 +73,6 @@ signupForm.addEventListener("submit", async (e) => {
     if (!response.ok) {
       throw new Error(data.error); // stops execution and jumps to nearest catch block
     }
-    // const { username } = data;
     window.location.href = `dashboard.html?username=${username}`;
     console.log("User created:", username);
   } catch (error) {
