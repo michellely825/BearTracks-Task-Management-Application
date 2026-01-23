@@ -48,15 +48,14 @@ loginForm.addEventListener("submit", async (e) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     });
-
+    const data = await response.json();
     if (!response.ok) {
-      throw new Error("new error binch");
+      throw new Error(data.error);
     } else {
-      const data = await response.json();
       console.log(data);
     }
   } catch (error) {
-    console.error("Error logging in...", error);
+    console.error(error.message);
   }
 });
 
@@ -71,15 +70,15 @@ signupForm.addEventListener("submit", async (e) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password, charInput }),
     });
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error); // stops execution and jumps to nearest catch block
-    }
     const data = await response.json();
-    console.log("User created:", data.username);
-    window.location.href = `dashboard.html?username=${data.username}`;
+    if (!response.ok) {
+      throw new Error(data.error); // stops execution and jumps to nearest catch block
+    }
+    // const { username } = data;
+    window.location.href = `dashboard.html?username=${username}`;
+    console.log("User created:", username);
   } catch (error) {
-    console.error("Signup failed:", error.message); // handles thrown errors
+    console.error(error.message); // handles thrown errors
   }
 });
 

@@ -10,14 +10,14 @@ router.post("/", async (req, res) => {
     if (!task)
       return res
         .status(400)
-        .json({ error: "Bad request, missing task which is required" });
+        .json({ error: "Adding todo failed: missing task" });
     const savedTask = await Todo.create({ task }); // creates a new document with the task and saves it to the todos collection
     console.log("Saved task:", savedTask);
 
     res.status(201).json(savedTask); // sends the saved document back to the front end (so it can display it)
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "server error unfortunately" });
+    res.status(500).json({ error: "POST /todos error" });
   }
 });
 
@@ -27,16 +27,8 @@ router.get("/", async (req, res) => {
     const todos = await Todo.find({}).populate("user", "username"); // populate() allows every todo to come with username now
     res.json(todos);
   } catch (error) {
-    res.status(500).json({ error: "server error unfortunately" });
+    res.status(500).json({ error: "GET /todos error" });
   }
 });
 
 module.exports = router;
-
-// router.get("/", (req, res) => {
-//   res.send("bellooo");
-// });
-
-// router.post("/login", (req, res) => {
-//   console.log("logging in: ", req.body);
-// });

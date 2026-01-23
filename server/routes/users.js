@@ -1,4 +1,5 @@
 const express = require("express");
+const bcrypt = require("bcrypt");
 const router = express.Router();
 const User = require("../models/user");
 
@@ -11,16 +12,18 @@ router.post("/", async (req, res) => {
         error: "Signup failed: Missing required info",
       });
     }
-    const { username: name, charInput: char } = await User.create({
+    const hashedPassword = await bcrypt.hash(password, 10);
+    console.log("hash", hashedPassword);
+    console.log(username, password, hashedPassword, charInput);
+    const user = await User.create({
       username,
-      password,
+      hashedPassword,
       charInput,
     });
-    res.status(201).json({ username: name, charInput: char });
-    console.log("hello server, new user incoming:", username, charInput);
+    res.status(201).json({ user });
+    console.log("Successfully added new user:", user);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "server error unfortunately" });
+    res.status(500).json({ error: "POST /users error" });
   }
 });
 

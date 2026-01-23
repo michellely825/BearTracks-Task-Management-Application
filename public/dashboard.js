@@ -61,16 +61,15 @@ async function sendTaskToServer(task) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ task }), // converts task obj to JSON string
     });
-
+    const data = await response.json(); // converts JSON to JS object
     if (!response.ok) {
-      throw new Error("bad server response - error adding task binch");
+      throw new Error(data.error);
     } else {
-      const savedTask = await response.json(); // converts JSON to JS object
-      console.log("task", savedTask);
-      return savedTask;
+      console.log("task:", data);
+      return data;
     }
   } catch (error) {
-    console.error("Sowy network error - can't add task to db...", error);
+    console.error(error.message);
     return null;
   }
 }
