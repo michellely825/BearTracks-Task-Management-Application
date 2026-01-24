@@ -4,7 +4,7 @@ const router = express.Router(); // router = mini Express app which allows the r
 const Todo = require("../models/todo"); // Imports todo Mongoose model which does CRUD
 const jwt = require("jsonwebtoken");
 
-// Create a new todo
+// Create a new todo and saves user ID too
 router.post("/", authenticateToken, async (req, res) => {
   try {
     const { task } = req.body;
@@ -22,22 +22,17 @@ router.post("/", authenticateToken, async (req, res) => {
   }
 });
 
-// Get all tasks for the user
+// Get all tasks for the specific user
 router.get("/", authenticateToken, async (req, res) => {
   try {
     const todos = await Todo.find({ user: req.user.id });
-    //   .populate(
-    //   "user",
-    //   "username"
-    // ); // populate() allows every todo to come with username now
-    console.log("todos::", todos);
     res.json(todos);
   } catch (error) {
     res.status(500).json({ error: "GET /todos error" });
   }
 });
 
-// middleware function -
+// middleware function - checks that token is valid and adds user info to incoming request
 function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
