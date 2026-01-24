@@ -13,7 +13,7 @@ router.post("/", authenticateToken, async (req, res) => {
         .status(400)
         .json({ error: "Adding todo failed: missing task" });
     const savedTask = await Todo.create({ task, user: req.user.id }); // creates a new document with the task and saves it to the todos collection
-    console.log("Saved task:", savedTask);
+    console.log("Saved task successfully with user ID:", savedTask);
 
     res.status(201).json(savedTask); // sends the saved document back to the front end (so it can display it)
   } catch (error) {
