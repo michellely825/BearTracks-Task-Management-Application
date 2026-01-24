@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
     if (users.length === 0)
       return res.status(404).json({ error: "No user found" });
     for (const user of users) {
-      console.log(user);
+      console.log("user logged in:", user);
       if (await bcrypt.compare(password, user.hashedPassword)) {
         const token = generateToken({ id: user._id, username: user.username });
         console.log("token", token);

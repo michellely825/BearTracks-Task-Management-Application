@@ -12,6 +12,32 @@ addButton.addEventListener("click", addTask);
 incompleteTasks.addEventListener("change", moveTask);
 completedTasks.addEventListener("change", moveTask);
 
+// when page gets reloaded?
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const response = await fetch(`${BACKEND_URL}/todos`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json(); // converts JSON to JS object
+    if (!response.ok) {
+      throw new Error(data.error);
+    }
+    console.log("all of this users tasks:", data);
+    display(data);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+function display(tasks) {
+  for (const task in tasks) {
+    addTaskToDOM(task);
+  }
+}
+
 function goBack() {
   window.location.href = `index.html`;
 }

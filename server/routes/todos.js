@@ -22,10 +22,14 @@ router.post("/", authenticateToken, async (req, res) => {
   }
 });
 
-// Get all tasks (not fully implemented yet)
-router.get("/", async (req, res) => {
+// Get all tasks for the user
+router.get("/", authenticateToken, async (req, res) => {
   try {
-    const todos = await Todo.find({}).populate("user", "username"); // populate() allows every todo to come with username now
+    const todos = await Todo.find({ user: req.user.id });
+    //   .populate(
+    //   "user",
+    //   "username"
+    // ); // populate() allows every todo to come with username now
     res.json(todos);
   } catch (error) {
     res.status(500).json({ error: "GET /todos error" });
@@ -40,7 +44,6 @@ function authenticateToken(req, res, next) {
 
   jwt.verify(token, process.env.ID_TOKEN_SECRET, (err, user) => {
     if (err) return res.status(403).json({ error: "token no longer valid" });
-    console.log("user", user);
     req.user = user;
     next();
   });
