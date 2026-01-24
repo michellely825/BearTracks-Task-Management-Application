@@ -51,8 +51,8 @@ loginForm.addEventListener("submit", async (e) => {
     if (!response.ok) {
       throw new Error(data.error);
     }
+    localStorage.setItem("token", data.token);
     window.location.href = `dashboard.html?username=${username}`;
-    console.log("Successfully logged in:", username);
   } catch (error) {
     console.error(error.message);
   }

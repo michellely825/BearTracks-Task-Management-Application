@@ -3,8 +3,10 @@ const router = express.Router();
 // const Login = require("../models/login");
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
-// log in
+// TODO: handle unique usernames
+// log in and creates a JWT token (with the user info)
 router.post("/", async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -14,22 +16,22 @@ router.post("/", async (req, res) => {
     for (const user of users) {
       console.log(user);
       if (await bcrypt.compare(password, user.hashedPassword)) {
-        return res.status(200).json({ data: "Login success" });
+        const token = generateToken({ id: user._id, username: user.username });
+        console.log("token", token);
+        return res.status(200).json({ token });
       }
     }
     return res.status(401).json({ error: "Login failed: invalid credentials" });
-    //   const isValid = await bcrypt.compare(password, user.hashedPassword);
-    //   if (!isValid) {
-    //     return res
-    //       .status(401)
-    //       .json({ error: "Login failed: invalid credentials" });
-    //   } else {
-    //     return res.status(200).json({ data: "Login success" });
-    //   }
   } catch (error) {
     console.log(error);
     res.status(500).json({ error });
   }
 });
 
+function generateToken(payload) {
+  const idToken = jwt.sign(payload, process.env.ID_TOKEN_SECRET);
+  return idToken;
+}
+
+// export router
 module.exports = router;

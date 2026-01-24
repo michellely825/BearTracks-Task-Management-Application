@@ -1,7 +1,6 @@
-// const beginProgram = require("./index");
-// console.log(username);
-// const tasks = [];
 const BACKEND_URL = "http://localhost:3000";
+const token = localStorage.getItem("token");
+
 const backButton = document.getElementById("back-button");
 const addButton = document.getElementById("add-button");
 const taskInput = document.getElementById("task-input");
@@ -58,14 +57,17 @@ async function sendTaskToServer(task) {
   try {
     const response = await fetch(`${BACKEND_URL}/todos`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({ task }), // converts task obj to JSON string
     });
     const data = await response.json(); // converts JSON to JS object
     if (!response.ok) {
       throw new Error(data.error);
     } else {
-      console.log("task:", data);
+      console.log("dashboard.js - data received from server: ", data);
       return data;
     }
   } catch (error) {
