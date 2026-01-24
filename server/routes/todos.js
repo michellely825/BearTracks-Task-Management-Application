@@ -30,6 +30,7 @@ router.get("/", authenticateToken, async (req, res) => {
     //   "user",
     //   "username"
     // ); // populate() allows every todo to come with username now
+    console.log("todos::", todos);
     res.json(todos);
   } catch (error) {
     res.status(500).json({ error: "GET /todos error" });

@@ -26,17 +26,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       throw new Error(data.error);
     }
     console.log("all of this users tasks:", data);
-    display(data);
+    for (const todo of data) {
+      if (!todo.completed) {
+        addTaskToDOM(todo.task);
+        // console.log(todo.task);
+      }
+    }
   } catch (error) {
     console.error(error.message);
   }
 });
-
-function display(tasks) {
-  for (const task in tasks) {
-    addTaskToDOM(task);
-  }
-}
 
 function goBack() {
   window.location.href = `index.html`;
