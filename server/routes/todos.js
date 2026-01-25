@@ -26,9 +26,17 @@ router.post("/", authenticateToken, async (req, res) => {
 router.get("/", authenticateToken, async (req, res) => {
   try {
     const todos = await Todo.find({ user: req.user.id });
-    res.json(todos);
+    res.json({ username: req.user.username, todos }); // TODO:
   } catch (error) {
     res.status(500).json({ error: "GET /todos error" });
+  }
+});
+
+// Update a task
+router.put("/", (req, res) => {
+  try {
+  } catch (error) {
+    res.status(500).json({ error: "PUT /todos error" });
   }
 });
 

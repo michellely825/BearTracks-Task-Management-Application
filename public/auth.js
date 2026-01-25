@@ -39,21 +39,27 @@ if (mode === "login") {
 // Event Listeners
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const username = document.querySelector("#log-in-username").value.trim();
-  const password = document.querySelector("#log-in-password").value;
+  const usernameInput = document.querySelector("#log-in-username").value.trim();
+  const passwordInput = document.querySelector("#log-in-password").value;
   try {
     const response = await fetch(`${BACKEND_URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({
+        username: usernameInput,
+        password: passwordInput,
+      }),
     });
-    const data = await response.json();
+    const data = await response.json(); // data is the token
+    console.log("data send back from logins.js:::", data);
     if (!response.ok) {
       throw new Error(data.error);
     }
-    localStorage.setItem("token", data.token);
-    window.location.href = `dashboard.html?username=${username}`;
+    localStorage.setItem("token", data);
+    // localStorage.setItem("username", data.username);
+    window.location.href = "dashboard.html";
   } catch (error) {
+    console.log(error);
     console.error(error.message);
   }
 });
@@ -61,20 +67,24 @@ loginForm.addEventListener("submit", async (e) => {
 signupForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const username = document.getElementById("sign-up-username").value.trim();
-  const password = document.getElementById("sign-up-password").value;
+  const usernameInput = document
+    .getElementById("sign-up-username")
+    .value.trim();
+  const passwordInput = document.getElementById("sign-up-password").value;
   try {
     const response = await fetch(`${BACKEND_URL}/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password, charInput }),
+      body: JSON.stringify({ usernameInput, passwordInput, charInput }),
     });
     const data = await response.json();
     if (!response.ok) {
       throw new Error(data.error); // stops execution and jumps to nearest catch block
     }
-    window.location.href = `dashboard.html?username=${username}`;
-    console.log("User created:", username);
+    // store token and username
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("username", data.username);
+    window.location.href = "dashboard.html";
   } catch (error) {
     console.error(error.message); // handles thrown errors
   }

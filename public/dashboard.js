@@ -1,19 +1,22 @@
 const BACKEND_URL = "http://localhost:3000";
 const token = localStorage.getItem("token");
+const username = localStorage.getItem("username");
 
 const backButton = document.getElementById("back-button");
 const addButton = document.getElementById("add-button");
 const taskInput = document.getElementById("task-input");
 const incompleteTasks = document.getElementById("incomplete-tasks");
 const completedTasks = document.getElementById("completed-tasks");
+const nameSpan = document.getElementById("username-span");
 
 backButton.addEventListener("click", goBack);
 addButton.addEventListener("click", addTask);
 incompleteTasks.addEventListener("change", moveTask);
 completedTasks.addEventListener("change", moveTask);
 
-// when page gets reloaded?
+//TODO: sign out button?
 document.addEventListener("DOMContentLoaded", async () => {
+  if (!token) return; // not logged in
   try {
     const response = await fetch(`${BACKEND_URL}/todos`, {
       method: "GET",
@@ -25,11 +28,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!response.ok) {
       throw new Error(data.error);
     }
-    console.log("all of this users tasks:", data);
+    updateNameUI(data.username);
     for (const todo of data) {
       if (!todo.completed) {
         addTaskToDOM(todo.task);
-        // console.log(todo.task);
       }
     }
   } catch (error) {
@@ -147,4 +149,8 @@ function createTask(taskValue) {
 
 function removeTask(e) {
   e.target.parentElement.parentElement.parentElement.remove();
+}
+
+function updateNameUI(username) {
+  nameSpan.textContent = username;
 }

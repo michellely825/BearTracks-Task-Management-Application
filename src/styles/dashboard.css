@@ -1,6 +1,9 @@
 #to-do-page {
-  height: 75vh;
+  /* background-color: red; */
+  height: 90vh;
+  max-height: 100%;
   width: 80vw;
+  max-width: 100%;
 }
 
 #task-input-and-button {
