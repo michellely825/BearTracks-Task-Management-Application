@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
       charInput,
     });
     const token = generateToken({ id: user._id, username: user.username });
-    res.status(201).json({ user, token }); // TODO:
+    res.status(201).json({ user, token });
   } catch (error) {
     res.status(500).json({ error: "POST /users error" });
   }
