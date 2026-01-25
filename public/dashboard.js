@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       throw new Error(data.error);
     }
     updateNameUI(data.username);
-    for (const todo of data) {
+    for (const todo of data.todos) {
       if (!todo.completed) {
         addTaskToDOM(todo.task);
       }

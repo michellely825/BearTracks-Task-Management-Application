@@ -25,8 +25,8 @@ router.post("/", authenticateToken, async (req, res) => {
 // Get all tasks for the specific user
 router.get("/", authenticateToken, async (req, res) => {
   try {
-    const todos = await Todo.find({ user: req.user.id });
-    res.json({ username: req.user.username, todos }); // TODO:
+    const todos = await Todo.find({ user: req.user.id }); // returns an array
+    res.json({ todos, username: req.user.username }); // TODO:
   } catch (error) {
     res.status(500).json({ error: "GET /todos error" });
   }
