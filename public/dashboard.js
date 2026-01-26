@@ -8,6 +8,7 @@ const taskInput = document.getElementById("task-input");
 const incompleteTaskList = document.getElementById("incomplete-task-list");
 const completedTaskList = document.getElementById("completed-task-list");
 const nameSpan = document.getElementById("username-span");
+const countSpan = document.getElementById("complete-tasks-count-span");
 
 backButton.addEventListener("click", goBack);
 addButton.addEventListener("click", addTask);
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     for (const todo of data.todos) {
       addTaskToDOM(todo);
     }
+    updateCount(data.todos);
   } catch (error) {
     console.error(error.message);
   }
@@ -44,10 +46,8 @@ function goBack() {
 // update status
 async function updateTaskStatus(e) {
   if (e.target.type == "checkbox") {
-    console.log("i got clicked:::", e.target.parentElement, e.target.checked);
-    // e.target.checked = false;
-
     const task = e.target.parentElement;
+
     try {
       const response = await fetch(`${BACKEND_URL}/todos/${task.id}`, {
         method: "PUT",
@@ -62,16 +62,18 @@ async function updateTaskStatus(e) {
         throw new Error(data.error);
       }
       e.target.parentElement.remove();
-      console.log("server returned this updated task:::", data._id, data.task);
       addTaskToDOM(data);
-      updateCount(); //TODO:
+      updateCount();
     } catch (error) {
       console.error(error.message);
     }
   }
 }
 
-function updateCount() {}
+function updateCount() {
+  const completedElements = document.querySelectorAll(".completed");
+  countSpan.textContent = completedElements.length;
+}
 
 // function moveTask(e) {
 //   if (e.target.type == "checkbox") {
@@ -136,19 +138,16 @@ async function sendTaskToServer(task) {
 // updates UI
 function addTaskToDOM(taskObj) {
   const { completed: taskCompleted, _id: taskID, task: taskContent } = taskObj; // grabs completed and renames it to taskCompleted etc...
-  console.log(taskContent, taskCompleted);
   const task = createTask(taskID, taskContent); // task is a list item here
   const checkbox = task.querySelector("input[type='checkbox']");
   if (taskCompleted === false) {
     checkbox.checked = false;
     task.classList.remove("completed");
     incompleteTaskList.append(task);
-    console.log("checkbox was unchecked");
   } else if (taskCompleted === true) {
     checkbox.checked = true;
-    task.className = "completed";
+    task.classList.add("completed");
     completedTaskList.append(task);
-    console.log("checkbox was checked:::", checkbox);
   }
 }
 

@@ -4,31 +4,17 @@ h2 {
   padding: 10px;
 }
 
-.form-group {
-  margin: 10px 15px 25px 15px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-}
-
-.form-group input {
-  width: 250px;
-  margin-left: 5px;
-}
-
-#sign-up .form-group {
-  margin: 0;
-  padding-bottom: 0;
-}
-
 .form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  /* border: 2px solid green; */
+  width: 70%;
+}
+
+#log-in-button,
+#sign-up-button {
+  align-self: center;
 }
 
 .form input {
@@ -98,8 +84,10 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
+  align-self: center;
 }
 
 #character-img {
   max-height: 170px;
+  filter: drop-shadow(0 0 10px rgb(173, 153, 137));
 }
