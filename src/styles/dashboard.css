@@ -65,6 +65,17 @@
   filter: none;
 }
 
+#sign-out-button {
+  width: 10%;
+  font-size: 1em;
+  background: rgb(231, 236, 243, 0.8);
+  border: 2px solid rgba(84, 127, 170);
+  color: rgb(84, 127, 170);
+  filter: drop-shadow(0 0 10px rgb(233, 225, 207));
+  align-self: flex-end;
+  margin: 0;
+}
+
 .lists {
   width: 80%;
   height: 100%;

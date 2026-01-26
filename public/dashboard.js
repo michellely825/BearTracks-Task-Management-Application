@@ -3,7 +3,7 @@ const token = localStorage.getItem("token"); //TODO: do refresh token?
 const username = localStorage.getItem("username");
 const character = localStorage.getItem("characterImg");
 
-const backButton = document.getElementById("back-button");
+const signOutButton = document.getElementById("sign-out-button");
 const addButton = document.getElementById("add-button");
 const taskInput = document.getElementById("task-input");
 const incompleteTaskList = document.getElementById("incomplete-task-list");
@@ -12,7 +12,7 @@ const nameSpan = document.getElementById("username-span");
 const countSpan = document.getElementById("complete-tasks-count-span");
 const characterImg = document.getElementById("user-char-img");
 
-backButton.addEventListener("click", goBack);
+signOutButton.addEventListener("click", signOut);
 addButton.addEventListener("click", addTask);
 document.addEventListener("click", updateTaskStatus);
 //TODO: sign out button instead of back button
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-function goBack() {
+function signOut() {
   window.location.href = `index.html`;
 }
 
