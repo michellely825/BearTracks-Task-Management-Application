@@ -14,14 +14,22 @@ router.post("/", async (req, res) => {
       });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log(username, password, hashedPassword, charInput);
     const user = await User.create({
       username,
       hashedPassword,
       charInput,
     });
     const token = generateToken({ id: user._id, username: user.username });
-    res.status(201).json({ user, token });
+    res
+      .status(201)
+      .json({
+        user: {
+          id: user._id,
+          username: user.username,
+          charInput: user.charInput,
+        },
+        token,
+      });
   } catch (error) {
     res.status(500).json({ error: "POST /users error" });
   }

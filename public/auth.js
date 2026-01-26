@@ -87,7 +87,8 @@ signupForm.addEventListener("submit", async (e) => {
     }
     // store token and username
     localStorage.setItem("token", data.token);
-    localStorage.setItem("username", data.username);
+    localStorage.setItem("username", data.user.username);
+    localStorage.setItem("characterImg", data.user.charInput);
     window.location.href = "dashboard.html";
   } catch (error) {
     console.error(error.message); // handles thrown errors
