@@ -1,5 +1,5 @@
 const BACKEND_URL = "http://localhost:3000";
-const token = localStorage.getItem("token");
+const token = localStorage.getItem("token"); //TODO: do refresh token?
 const username = localStorage.getItem("username");
 
 const backButton = document.getElementById("back-button");

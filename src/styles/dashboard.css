@@ -12,7 +12,7 @@
   /* justify-content: flex-start; */
   justify-content: space-between;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 25px;
   width: 70%;
   height: 10%;
   margin: 25px;
@@ -40,7 +40,7 @@
 .lists {
   width: 80%;
   height: 100%;
-  font-size: 1.7em;
+  font-size: 1.4em;
   color: rgb(84, 127, 170);
 }
 
@@ -85,4 +85,9 @@ li {
 .completed {
   text-decoration: line-through;
   background-color: hsla(0, 0%, 76%, 0.492);
+}
+
+.lists > div {
+  margin: 10px 0px 40px 0px;
+  /* border: 2px solid red; */
 }
