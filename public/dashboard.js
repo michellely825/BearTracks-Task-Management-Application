@@ -187,6 +187,7 @@ function createTask(taskID, taskValue) {
 
   buttonDiv.append(editButton, delButton);
 
+  // const content = tInput.append(tSpan);
   task.append(tInput, tSpan, buttonDiv);
 
   return task;
