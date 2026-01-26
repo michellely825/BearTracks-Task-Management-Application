@@ -105,7 +105,7 @@ input[type="password"] {
 
 input[type="checkbox"] {
   filter: none;
-  transform: scale(1.4);
+  transform: scale(1.5);
 }
 
 input:-webkit-autofill {

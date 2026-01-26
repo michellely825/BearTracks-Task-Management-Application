@@ -16,7 +16,16 @@ router.post("/", async (req, res) => {
     for (const user of users) {
       if (await bcrypt.compare(password, user.hashedPassword)) {
         const token = generateToken({ id: user._id, username: user.username });
-        return res.status(200).json(token); //TODO: // sends the username and token back to frontend
+        return res
+          .status(200)
+          .json({
+            user: {
+              id: user._id,
+              username: user.username,
+              charInput: user.charInput,
+            },
+            token,
+          }); //TODO: // sends the username and token back to frontend
       }
     }
     return res.status(401).json({ error: "Login failed: invalid credentials" });

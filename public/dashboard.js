@@ -1,7 +1,7 @@
 const BACKEND_URL = "http://localhost:3000";
 const token = localStorage.getItem("token"); //TODO: do refresh token?
 const username = localStorage.getItem("username");
-const characterImg = localStorage.getItem("characterImg");
+const character = localStorage.getItem("characterImg");
 
 const backButton = document.getElementById("back-button");
 const addButton = document.getElementById("add-button");
@@ -10,6 +10,7 @@ const incompleteTaskList = document.getElementById("incomplete-task-list");
 const completedTaskList = document.getElementById("completed-task-list");
 const nameSpan = document.getElementById("username-span");
 const countSpan = document.getElementById("complete-tasks-count-span");
+const characterImg = document.getElementById("user-char-img");
 
 backButton.addEventListener("click", goBack);
 addButton.addEventListener("click", addTask);
@@ -30,7 +31,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!response.ok) {
       throw new Error(data.error);
     }
-    updateNameUI(data.username);
+    personalizeUI();
+
     for (const todo of data.todos) {
       addTaskToDOM(todo);
     }
@@ -265,6 +267,7 @@ function updateTaskContent(e) {
   // update UI
 }
 
-function updateNameUI(username) {
+function personalizeUI() {
   nameSpan.textContent = username;
+  characterImg.src = character;
 }

@@ -55,8 +55,10 @@ loginForm.addEventListener("submit", async (e) => {
     if (!response.ok) {
       throw new Error(data.error);
     }
-    localStorage.setItem("token", data);
-    // localStorage.setItem("username", data.username);
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("username", data.user.username);
+    localStorage.setItem("characterImg", data.user.charInput);
+
     window.location.href = "dashboard.html";
   } catch (error) {
     console.log(error);
