@@ -10,14 +10,35 @@ h2 {
   justify-content: center;
   align-items: flex-start;
   width: 70%;
+  /* border: 2px solid red; */
 }
 
-#log-in-button,
-#sign-up-button {
+#log-in-username,
+#sign-up-username {
+  margin-bottom: 15px;
+}
+
+#log-in > * {
+  margin: 10px;
+}
+
+form > input {
+  /* padding-top: 12px; */
+  height: 40px;
+  font-size: 1.3em;
+  padding-left: 20px;
+}
+
+#log-in-button {
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+button {
   align-self: center;
 }
 
-.form input {
+input {
   width: 100%;
 }
 
