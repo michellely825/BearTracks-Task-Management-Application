@@ -5,16 +5,16 @@ const username = localStorage.getItem("username");
 const backButton = document.getElementById("back-button");
 const addButton = document.getElementById("add-button");
 const taskInput = document.getElementById("task-input");
-const incompleteTasks = document.getElementById("incomplete-tasks");
-const completedTasks = document.getElementById("completed-tasks");
+const incompleteTaskList = document.getElementById("incomplete-task-list");
+const completedTaskList = document.getElementById("completed-task-list");
 const nameSpan = document.getElementById("username-span");
 
 backButton.addEventListener("click", goBack);
 addButton.addEventListener("click", addTask);
-incompleteTasks.addEventListener("change", moveTask);
-completedTasks.addEventListener("change", moveTask);
-
+document.addEventListener("click", updateTaskStatus);
 //TODO: sign out button instead of back button
+
+// runs when the page is first loaded or gets refreshed
 document.addEventListener("DOMContentLoaded", async () => {
   if (!token) return; // not logged in
   try {
@@ -30,9 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     updateNameUI(data.username);
     for (const todo of data.todos) {
-      if (!todo.completed) {
-        addTaskToDOM(todo._id, todo.task);
-      }
+      addTaskToDOM(todo);
     }
   } catch (error) {
     console.error(error.message);
@@ -43,29 +41,61 @@ function goBack() {
   window.location.href = `index.html`;
 }
 
-function moveTask(e) {
+// update status
+async function updateTaskStatus(e) {
   if (e.target.type == "checkbox") {
-    e.target.parentElement.parentElement.remove();
-    const task = createTask(e.target.parentElement.textContent);
-    if (e.target.checked) {
-      console.log("checked");
-      task.querySelector('input[type="checkbox"]').checked = true;
-      task.className = "completed";
-      completedTasks.append(task);
-    } else {
-      console.log("unchecked");
-      task.classList.remove("completed");
-      incompleteTasks.append(task);
+    console.log("i got clicked:::", e.target.parentElement, e.target.checked);
+    // e.target.checked = false;
+
+    const task = e.target.parentElement;
+    try {
+      const response = await fetch(`${BACKEND_URL}/todos/${task.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ completed: e.target.checked }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error);
+      }
+      e.target.parentElement.remove();
+      console.log("server returned this updated task:::", data._id, data.task);
+      addTaskToDOM(data);
+      updateCount(); //TODO:
+    } catch (error) {
+      console.error(error.message);
     }
   }
 }
+
+function updateCount() {}
+
+// function moveTask(e) {
+//   if (e.target.type == "checkbox") {
+//     e.target.parentElement.parentElement.remove();
+//     const task = createTask(e.target.parentElement.textContent);
+//     if (e.target.checked) {
+//       console.log("checked");
+//       task.querySelector('input[type="checkbox"]').checked = true;
+//       task.className = "completed";
+//       completedTasks.append(task);
+//     } else {
+//       console.log("unchecked");
+//       task.classList.remove("completed");
+//       incompleteTasks.append(task);
+//     }
+//   }
+// }
 
 async function addTask() {
   const task = captureTask();
   if (!task) return; // stop if input is empty
   const savedTask = await sendTaskToServer(task);
   if (!savedTask) return; // stop if server fails and returns null
-  addTaskToDOM(savedTask._id, savedTask.task);
+  addTaskToDOM(savedTask);
 }
 
 // reads what the user typed
@@ -104,8 +134,22 @@ async function sendTaskToServer(task) {
 }
 
 // updates UI
-function addTaskToDOM(taskID, task) {
-  incompleteTasks.append(createTask(taskID, task));
+function addTaskToDOM(taskObj) {
+  const { completed: taskCompleted, _id: taskID, task: taskContent } = taskObj; // grabs completed and renames it to taskCompleted etc...
+  console.log(taskContent, taskCompleted);
+  const task = createTask(taskID, taskContent); // task is a list item here
+  const checkbox = task.querySelector("input[type='checkbox']");
+  if (taskCompleted === false) {
+    checkbox.checked = false;
+    task.classList.remove("completed");
+    incompleteTaskList.append(task);
+    console.log("checkbox was unchecked");
+  } else if (taskCompleted === true) {
+    checkbox.checked = true;
+    task.className = "completed";
+    completedTaskList.append(task);
+    console.log("checkbox was checked:::", checkbox);
+  }
 }
 
 function createTask(taskID, taskValue) {
@@ -129,7 +173,7 @@ function createTask(taskID, taskValue) {
   delImg.src = "/src/images/del (1).png";
   delImg.id = "del-img";
   delButton.append(delImg);
-  delButton.addEventListener("click", removeTask);
+  delButton.addEventListener("click", deleteTask);
 
   const editButton = document.createElement("button");
   editButton.id = "edit-button";
@@ -137,7 +181,7 @@ function createTask(taskID, taskValue) {
   editImg.src = "/src/images/edit1smaller.png";
   editImg.id = "edit-img";
   editButton.append(editImg);
-  editButton.addEventListener("click", updateTask);
+  editButton.addEventListener("click", updateTaskContent);
 
   buttonDiv.append(editButton, delButton);
 
@@ -185,7 +229,7 @@ function createTask(taskID, taskValue) {
 //   return task;
 // }
 
-async function removeTask(e) {
+async function deleteTask(e) {
   const task = e.target.closest("li");
   console.log("id:::", task.id);
   try {
@@ -209,7 +253,7 @@ async function removeTask(e) {
   // e.target.parentElement.parentElement.parentElement.remove();
 }
 
-function updateTask(e) {
+function updateTaskContent(e) {
   const li = e.target.closest("li");
   const tSpan = li.querySelector("span");
   tSpan.contentEditable = "true";

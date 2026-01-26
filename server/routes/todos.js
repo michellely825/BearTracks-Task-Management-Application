@@ -22,7 +22,7 @@ router.post("/", authenticateToken, async (req, res) => {
   }
 });
 
-// Get all tasks for the specific user
+// Get all tasks for the logged-in user
 router.get("/", authenticateToken, async (req, res) => {
   try {
     const todos = await Todo.find({ user: req.user.id }); // returns an array
@@ -32,11 +32,35 @@ router.get("/", authenticateToken, async (req, res) => {
   }
 });
 
-// Update a task
-router.put("/", (req, res) => {
+// Update task text content
+router.put("/", authenticateToken, (req, res) => {
   try {
   } catch (error) {
     res.status(500).json({ error: "PUT /todos error" });
+  }
+});
+
+// Update task status
+router.put("/:id", authenticateToken, async (req, res) => {
+  try {
+    const todoID = req.params.id;
+    const updatedStatus = req.body.completed;
+    console.log("updated status:::", updatedStatus);
+    const updatedToDo = await Todo.findByIdAndUpdate(
+      todoID,
+      { completed: updatedStatus },
+      {
+        new: true, // return updated doc
+        runValidators: true, // enforce schema rules
+      }
+    );
+    if (!updatedToDo) {
+      res.status(404).json({ error: "Todo not found" });
+    }
+    console.log("updated todo:::", updatedToDo);
+    res.status(200).json(updatedToDo);
+  } catch (error) {
+    res.status(500).json({ error: "PUT /todos/:id error" });
   }
 });
 
@@ -44,14 +68,11 @@ router.put("/", (req, res) => {
 router.delete("/:id", authenticateToken, async (req, res) => {
   try {
     const todoID = req.params.id;
-    console.log("todoID:::", todoID);
     const deletedToDo = await Todo.findByIdAndDelete(todoID);
     if (!deletedToDo) {
       res.status(404).json({ error: "Todo not found" });
     }
-    console.log(deletedToDo);
     res.json({ message: "Deleted!" });
-    console.log("success deleted!!");
   } catch (error) {
     res.status(500).json({ error: "DELETE /todos error" });
   }
