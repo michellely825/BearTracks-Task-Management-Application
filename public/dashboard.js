@@ -12,6 +12,8 @@ const nameSpan = document.getElementById("username-span");
 const countSpan = document.getElementById("complete-tasks-count-span");
 const characterImg = document.getElementById("user-char-img");
 
+//TODO: reward system?
+//TODO: display todays date? or dates in general of when the task was created?
 signOutButton.addEventListener("click", signOut);
 addButton.addEventListener("click", addTask);
 document.addEventListener("click", updateTaskStatus);
@@ -107,7 +109,6 @@ async function addTask() {
 function captureTask() {
   const task = taskInput.value;
   if (task != "") {
-    console.log(task);
     taskInput.value = "";
     return task;
   }
@@ -256,6 +257,7 @@ async function deleteTask(e) {
   // e.target.parentElement.parentElement.parentElement.remove();
 }
 
+//TODO: finish implementing this!
 function updateTaskContent(e) {
   const li = e.target.closest("li");
   const tSpan = li.querySelector("span");
@@ -270,5 +272,5 @@ function updateTaskContent(e) {
 
 function personalizeUI() {
   nameSpan.textContent = username;
-  characterImg.src = character;
+  characterImg.src = character; //TODO: add a hover feature to change the character
 }
