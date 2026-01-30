@@ -10,7 +10,7 @@ const incompleteTaskList = document.getElementById("incomplete-task-list");
 const completedTaskList = document.getElementById("completed-task-list");
 const nameSpan = document.getElementById("username-span");
 const countSpan = document.getElementById("complete-tasks-count-span");
-const characterImg = document.getElementById("user-char-img");
+const characterImg = document.getElementById("user-profile-img");
 
 //TODO: reward system?
 //TODO: display todays date? or dates in general of when the task was created?
