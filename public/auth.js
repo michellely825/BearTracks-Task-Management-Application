@@ -8,6 +8,8 @@ const BACKEND_URL = "http://localhost:3000";
 let charImgIndex = 0;
 let charInput = "/src/images/characters/bear12.png";
 
+const loginErrorMsg = document.querySelector("#login-error-msg");
+const signupErrorMsg = document.querySelector("#signup-error-msg");
 // Log In DOM
 const loginScreen = document.getElementById("log-in");
 const loginForm = document.querySelector("#log-in-form");
@@ -43,6 +45,7 @@ loginForm.addEventListener("submit", async (e) => {
   const usernameInput = document.querySelector("#log-in-username").value.trim();
   const passwordInput = document.querySelector("#log-in-password").value;
   try {
+    loginErrorMsg.classList.add("hidden");
     const response = await fetch(`${BACKEND_URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -54,6 +57,8 @@ loginForm.addEventListener("submit", async (e) => {
     const data = await response.json(); // data is the token
     console.log("data send back from logins.js:::", data);
     if (!response.ok) {
+      loginErrorMsg.textContent = data.error;
+      loginErrorMsg.classList.remove("hidden");
       throw new Error(data.error);
     }
     localStorage.setItem("token", data.token);
@@ -62,7 +67,6 @@ loginForm.addEventListener("submit", async (e) => {
 
     window.location.href = "dashboard.html";
   } catch (error) {
-    console.log(error);
     console.error(error.message);
   }
 });
@@ -75,6 +79,7 @@ signupForm.addEventListener("submit", async (e) => {
     .value.trim();
   const passwordInput = document.getElementById("sign-up-password").value;
   try {
+    signupErrorMsg.classList.add("hidden");
     const response = await fetch(`${BACKEND_URL}/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -85,7 +90,11 @@ signupForm.addEventListener("submit", async (e) => {
       }),
     });
     const data = await response.json();
+    console.log("data send back from users.js:::", data);
+
     if (!response.ok) {
+      signupErrorMsg.textContent = data.error;
+      signupErrorMsg.classList.remove("hidden");
       throw new Error(data.error); // stops execution and jumps to nearest catch block
     }
     // store token and username

@@ -12,23 +12,26 @@ router.post("/", async (req, res) => {
     const { username, password } = req.body; // destructures the json sent from the client
     const users = await User.find({ username });
     if (users.length === 0)
-      return res.status(404).json({ error: "No user found" });
+      return res.status(404).json({
+        error:
+          "Sorry, we couldn't find an account with that username. Please try again.",
+      });
     for (const user of users) {
       if (await bcrypt.compare(password, user.hashedPassword)) {
         const token = generateToken({ id: user._id, username: user.username });
-        return res
-          .status(200)
-          .json({
-            user: {
-              id: user._id,
-              username: user.username,
-              charInput: user.charInput,
-            },
-            token,
-          }); //TODO: // sends the username and token back to frontend
+        return res.status(200).json({
+          user: {
+            id: user._id,
+            username: user.username,
+            charInput: user.charInput,
+          },
+          token,
+        }); //TODO: // sends the username and token back to frontend
       }
     }
-    return res.status(401).json({ error: "Login failed: invalid credentials" });
+    return res
+      .status(401)
+      .json({ error: "Invalid credentials. Please try again." });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error });

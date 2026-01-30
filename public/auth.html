@@ -11,10 +11,11 @@
     <div class="pop-up" id="log-in">
       <h2>Welcome Back!</h2>
       <form class="form" id="log-in-form">
+        <h4 class="error-msg hidden" id="login-error-msg"></h4>
         <label for="log-in-username">Username: </label>
-        <input type="text" id="log-in-username" />
+        <input type="text" id="log-in-username" required />
         <label for="log-in-password">Password: </label>
-        <input type="password" id="log-in-password" />
+        <input type="password" id="log-in-password" required />
         <button type="submit" class="button" id="log-in-button">Log in</button>
       </form>
       <div class="switch">
@@ -23,13 +24,14 @@
       </div>
     </div>
 
-    <div class="main" id="sign-up">
-      <h2>Create an Account</h2>
+    <div class="pop-up" id="sign-up">
+      <h2 id="create-an-acc-msg">Create an Account</h2>
       <form class="form" id="sign-up-form">
+        <h4 class="error-msg hidden" id="signup-error-msg"></h4>
         <label for="sign-up-username">Username: </label>
-        <input type="text" id="sign-up-username" />
+        <input type="text" id="sign-up-username" required />
         <label for="sign-up-password">Password: </label>
-        <input type="password" id="sign-up-password" />
+        <input type="password" id="sign-up-password" required />
         <div class="character-selector">
           <button type="button" class="arrow-button">
             <img

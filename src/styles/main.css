@@ -18,7 +18,7 @@ body {
   background-repeat: repeat-y;
   background-size: 100% auto;
   background-position: top center;
-
+  /* min-height: 100%; */
   height: auto;
   /* height: 100vh; */
   display: flex;
@@ -27,7 +27,11 @@ body {
 }
 
 .pop-up {
-  margin-top: 110px;
+  position: fixed; /* or absolute if inside a positioned container */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /*
+  /* margin-top: 100px; */
   width: 70vw;
   max-width: 630px;
   background-color: rgb(244, 236, 200);
@@ -38,7 +42,15 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
+}
+
+#log-in {
+  /* margin-top: 125px; */
+}
+
+#sign-up {
+  /* margin-top: 50px; */
 }
 
 #character-img {
@@ -58,9 +70,9 @@ body {
 }
 
 h2 {
-  font-size: clamp(2.5rem, 11vw, 4rem);
   color: rgb(84, 127, 170);
   text-align: center;
+  font-size: 3.4em;
 }
 
 .auth-buttons {
@@ -116,6 +128,16 @@ input:-webkit-autofill {
 
 input:focus {
   outline: none;
+}
+
+#create-an-acc-msg {
+  font-size: 3em;
+}
+
+.error-msg {
+  color: rgb(238, 75, 75);
+  margin-bottom: 10px;
+  /* border: 2px solid red; */
 }
 
 .hidden {
