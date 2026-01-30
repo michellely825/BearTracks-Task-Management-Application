@@ -80,23 +80,6 @@ function updateCount() {
   countSpan.textContent = completedElements.length;
 }
 
-// function moveTask(e) {
-//   if (e.target.type == "checkbox") {
-//     e.target.parentElement.parentElement.remove();
-//     const task = createTask(e.target.parentElement.textContent);
-//     if (e.target.checked) {
-//       console.log("checked");
-//       task.querySelector('input[type="checkbox"]').checked = true;
-//       task.className = "completed";
-//       completedTasks.append(task);
-//     } else {
-//       console.log("unchecked");
-//       task.classList.remove("completed");
-//       incompleteTasks.append(task);
-//     }
-//   }
-// }
-
 async function addTask() {
   const task = captureTask();
   if (!task) return; // stop if input is empty
@@ -193,45 +176,6 @@ function createTask(taskID, taskValue) {
 
   return task;
 }
-
-// function createTask(taskValue) {
-//   const task = document.createElement("li");
-//   const tInput = document.createElement("input");
-//   const tLabel = document.createElement("label");
-
-//   const buttonDiv = document.createElement("div");
-//   const delButton = document.createElement("button");
-//   const delImg = document.createElement("img");
-//   const editButton = document.createElement("button");
-//   const editImg = document.createElement("img");
-
-//   tInput.type = "checkbox";
-
-//   tLabel.textContent = taskValue;
-//   tLabel.prepend(tInput);
-
-//   buttonDiv.className = "task-buttons-div";
-
-//   delImg.src = "/src/images/del (1).png";
-//   delImg.id = "del-img";
-//   delButton.id = "delete-button";
-//   delButton.append(delImg);
-//   delButton.addEventListener("click", removeTask);
-
-//   editImg.src = "/src/images/edit1smaller.png";
-//   editImg.id = "edit-img";
-//   editButton.id = "edit-button";
-
-//   editButton.append(editImg);
-//   editButton.addEventListener("click", updateTask);
-
-//   buttonDiv.append(editButton);
-//   buttonDiv.append(delButton);
-
-//   task.append(tLabel);
-//   task.append(buttonDiv);
-//   return task;
-// }
 
 async function deleteTask(e) {
   const task = e.target.closest("li");

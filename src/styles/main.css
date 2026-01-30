@@ -161,35 +161,3 @@ input:focus {
     transform: translateY(-8px);
   }
 }
-
-/* .name-input-and-button {
-  width: 75%;
-  min-width: 300px;
-  height: 35px;
-  background-color: white;
-  border-radius: 25px;
-  filter: drop-shadow(0 0 7px rgb(206, 198, 159));
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
-}
-
-.name-input-and-button input {
-  width: 70%;
-  min-width: 200px;
-  height: 100%;
-  border: none;
-  border-radius: 30px;
-  padding-left: 15px;
-  font-size: 1.1em;
-}
-
-.name-input-and-button input:focus {
-  outline: none;
-}
-
-/* removed browser's autofill background color */
-/* .name-input-and-button input:-webkit-autofill { */
-/* -webkit-box-shadow: 0 0 0 1000px #fff inset !important; */
-/* } */
