@@ -137,7 +137,7 @@ input:focus {
 .error-msg {
   color: rgb(238, 75, 75);
   margin-bottom: 10px;
-  /* border: 2px solid red; */
+  width: 100%;
 }
 
 .hidden {
