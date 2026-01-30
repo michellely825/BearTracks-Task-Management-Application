@@ -66,7 +66,7 @@ async function updateTaskStatus(e) {
       if (!response.ok) {
         throw new Error(data.error);
       }
-      e.target.parentElement.remove();
+      task.remove();
       addTaskToDOM(data);
       updateCount();
     } catch (error) {
@@ -250,6 +250,7 @@ async function deleteTask(e) {
       throw new Error(data.error);
     }
     task.remove();
+    updateCount();
   } catch (error) {
     console.error(error.message);
   }
