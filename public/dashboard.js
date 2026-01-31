@@ -182,6 +182,7 @@ function updateTaskContent(e) {
   tSpan.contentEditable = "true";
   document.addEventListener("keydown", async (e) => {
     if (e.key === "Enter") {
+      e.preventDefault();
       const updatedContent = tSpan.textContent;
       try {
         const response = await fetch(`${BACKEND_URL}/todos/${task.id}`, {
