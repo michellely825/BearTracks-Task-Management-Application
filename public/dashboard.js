@@ -17,7 +17,6 @@ const characterImg = document.getElementById("user-profile-img");
 signOutButton.addEventListener("click", signOut);
 addButton.addEventListener("click", addTask);
 document.addEventListener("click", updateTaskStatus);
-//TODO: sign out button instead of back button
 
 // runs when the page is first loaded or gets refreshed
 document.addEventListener("DOMContentLoaded", async () => {
@@ -46,33 +45,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 function signOut() {
   window.location.href = `index.html`;
-}
-
-// update status
-async function updateTaskStatus(e) {
-  if (e.target.type == "checkbox") {
-    const task = e.target.parentElement;
-
-    try {
-      const response = await fetch(`${BACKEND_URL}/todos/${task.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ completed: e.target.checked }),
-      });
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.error);
-      }
-      task.remove();
-      addTaskToDOM(data);
-      updateCount();
-    } catch (error) {
-      console.error(error.message);
-    }
-  }
 }
 
 function updateCount() {
@@ -202,17 +174,70 @@ async function deleteTask(e) {
   // e.target.parentElement.parentElement.parentElement.remove();
 }
 
+//TODO: frontend: move cursor to end
 //TODO: finish implementing this!
 function updateTaskContent(e) {
-  const li = e.target.closest("li");
-  const tSpan = li.querySelector("span");
+  const task = e.target.closest("li");
+  const tSpan = task.querySelector("span");
   tSpan.contentEditable = "true";
+  document.addEventListener("keydown", async (e) => {
+    if (e.key === "Enter") {
+      const updatedContent = tSpan.textContent;
+      try {
+        const response = await fetch(`${BACKEND_URL}/todos/${task.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ task: updatedContent }),
+        });
+        const data = await response.json();
+        console.log("data from todos.js:", data);
+        if (!response.ok) {
+          throw new Error(data.error);
+        }
+        console.log("successfully updated task content!");
+        tSpan.textContent = updatedContent;
+        tSpan.contentEditable = "false";
+      } catch (error) {
+        console.log(error);
+        console.error(error.message);
+      }
+    }
+  });
   tSpan.focus();
 
   // replace text with input
   // listen for Enter key
   // send update to backend
   // update UI
+}
+
+// update status
+async function updateTaskStatus(e) {
+  if (e.target.type == "checkbox") {
+    const task = e.target.parentElement;
+    try {
+      const response = await fetch(`${BACKEND_URL}/todos/${task.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ completed: e.target.checked }), // JS → JSON (string)
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error);
+      }
+      task.remove();
+      addTaskToDOM(data);
+      updateCount();
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
 }
 
 function personalizeUI() {

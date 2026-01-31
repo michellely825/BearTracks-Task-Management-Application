@@ -33,29 +33,31 @@ router.get("/", authenticateToken, async (req, res) => {
 });
 
 // Update task text content
-router.put("/", authenticateToken, (req, res) => {
-  try {
-  } catch (error) {
-    res.status(500).json({ error: "PUT /todos error" });
-  }
-});
+// router.put("/:id", authenticateToken, (req, res) => {
+//   try {
+//   } catch (error) {
+//     res.status(500).json({ error: "PUT /todos error" });
+//   }
+// });
 
-// Update task status
+// Update task status or task content
 router.put("/:id", authenticateToken, async (req, res) => {
   try {
-    const todoID = req.params.id;
+    console.log(req.params);
+    const todoID = req.params.id; // from the URL
     const updatedStatus = req.body.completed;
-    console.log("updated status:::", updatedStatus);
-    const updatedToDo = await Todo.findByIdAndUpdate(
-      todoID,
-      { completed: updatedStatus },
-      {
-        new: true, // return updated doc
-        runValidators: true, // enforce schema rules
-      }
-    );
+    const updatedContent = req.body.task;
+    const updates = {};
+    if (updatedStatus !== undefined) updates.status = updatedStatus;
+    if (updatedContent !== undefined) updates.task = updatedContent;
+    console.log("id", todoID);
+    const updatedToDo = await Todo.findByIdAndUpdate(todoID, updates, {
+      new: true, // return updated doc
+      runValidators: true, // enforce schema rules
+    });
     if (!updatedToDo) {
-      res.status(404).json({ error: "Todo not found" });
+      console.log("HERE");
+      return res.status(404).json({ error: "Todo not found" });
     }
     console.log("updated todo:::", updatedToDo);
     res.status(200).json(updatedToDo);
@@ -64,13 +66,14 @@ router.put("/:id", authenticateToken, async (req, res) => {
   }
 });
 
+// TODO: double check todoID.....???
 // Delete a task
 router.delete("/:id", authenticateToken, async (req, res) => {
   try {
     const todoID = req.params.id;
     const deletedToDo = await Todo.findByIdAndDelete(todoID);
     if (!deletedToDo) {
-      res.status(404).json({ error: "Todo not found" });
+      return res.status(404).json({ error: "Todo not found" });
     }
     res.json({ message: "Deleted!" });
   } catch (error) {

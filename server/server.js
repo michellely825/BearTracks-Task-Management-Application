@@ -18,6 +18,8 @@ app.use(
     origin: ["http://localhost:5500", "http://127.0.0.1:5500"],
   })
 );
+
+// JSON → JS object
 app.use(express.json()); // parses JSON body because Express can't do it automatically
 
 // Set up MongoDB connection
