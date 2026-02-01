@@ -1,4 +1,3 @@
-//TODO: add ui/ux for authentication part (e.g. invalid credentials, no user found)
 // const { response } = require("express");
 const params = new URLSearchParams(window.location.search);
 const mode = params.get("mode");

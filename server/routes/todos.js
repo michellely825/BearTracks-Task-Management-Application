@@ -66,7 +66,6 @@ router.put("/:id", authenticateToken, async (req, res) => {
   }
 });
 
-// TODO: double check todoID.....???
 // Delete a task
 router.delete("/:id", authenticateToken, async (req, res) => {
   try {

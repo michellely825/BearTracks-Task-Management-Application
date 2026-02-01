@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
             charInput: user.charInput,
           },
           token,
-        }); //TODO: // sends the username and token back to frontend
+        });
       }
     }
     return res

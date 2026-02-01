@@ -208,11 +208,6 @@ function updateTaskContent(e) {
     }
   });
   tSpan.focus();
-
-  // replace text with input
-  // listen for Enter key
-  // send update to backend
-  // update UI
 }
 
 // update status
