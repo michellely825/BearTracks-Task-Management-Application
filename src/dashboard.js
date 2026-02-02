@@ -128,7 +128,7 @@ function createTask(taskID, taskValue) {
   const delButton = document.createElement("button");
   delButton.id = "delete-button";
   const delImg = document.createElement("img");
-  delImg.src = "/src/images/del (1).png";
+  delImg.src = "/src/images/buttons/del (1).png";
   delImg.id = "del-img";
   delButton.append(delImg);
   delButton.addEventListener("click", deleteTask);
@@ -136,7 +136,7 @@ function createTask(taskID, taskValue) {
   const editButton = document.createElement("button");
   editButton.id = "edit-button";
   const editImg = document.createElement("img");
-  editImg.src = "/src/images/edit1smaller.png";
+  editImg.src = "/src/images/buttons/edit1smaller.png";
   editImg.id = "edit-img";
   editButton.append(editImg);
   editButton.addEventListener("click", updateTaskContent);
