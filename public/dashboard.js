@@ -214,6 +214,7 @@ function updateTaskContent(e) {
 async function updateTaskStatus(e) {
   if (e.target.type == "checkbox") {
     const task = e.target.parentElement;
+    console.log(e.target.checked);
     try {
       const response = await fetch(`${BACKEND_URL}/todos/${task.id}`, {
         method: "PUT",

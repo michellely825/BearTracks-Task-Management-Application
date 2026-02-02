@@ -43,12 +43,12 @@ router.get("/", authenticateToken, async (req, res) => {
 // Update task status or task content
 router.put("/:id", authenticateToken, async (req, res) => {
   try {
-    console.log(req.params);
     const todoID = req.params.id; // from the URL
     const updatedStatus = req.body.completed;
+    console.log("status", updatedStatus);
     const updatedContent = req.body.task;
     const updates = {};
-    if (updatedStatus !== undefined) updates.status = updatedStatus;
+    if (updatedStatus !== undefined) updates.completed = updatedStatus;
     if (updatedContent !== undefined) updates.task = updatedContent;
     console.log("id", todoID);
     const updatedToDo = await Todo.findByIdAndUpdate(todoID, updates, {
@@ -56,7 +56,6 @@ router.put("/:id", authenticateToken, async (req, res) => {
       runValidators: true, // enforce schema rules
     });
     if (!updatedToDo) {
-      console.log("HERE");
       return res.status(404).json({ error: "Todo not found" });
     }
     console.log("updated todo:::", updatedToDo);
