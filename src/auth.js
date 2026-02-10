@@ -1,5 +1,9 @@
 // const { response } = require("express");
-import { updateAuthScreen, calculateNewIndex } from "./auth.helpers.js";
+import {
+  updateAuthScreen,
+  calculateNewIndex,
+  createUserPayload,
+} from "./auth.helpers.js";
 
 // Variables
 const params = new URLSearchParams(window.location.search);
@@ -84,27 +88,40 @@ loginForm.addEventListener("submit", async (e) => {
       body: JSON.stringify(userPayload),
     });
     const data = await response.json(); // data is the token
-    if (!response.ok) {
-      loginErrorMsg.textContent = data.error;
-      loginErrorMsg.classList.remove("hidden");
-      throw new Error(data.error);
-    }
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("username", data.user.username);
-    localStorage.setItem("characterImg", data.user.charInput);
-
-    window.location.href = "dashboard.html";
+    const parsedData = parseResponse(response, data);
+    logIn(parsedData); // updates localStorage and navigates
   } catch (error) {
     console.error(error.message);
   }
 });
 
-function createUserPayload(usernameInput, passwordInput) {
+function parseResponse(response, data) {
+  if (!response.ok) {
+    throw new Error(data.error);
+  }
+  console.log("response", response);
+  console.log("data", data);
   return {
-    username: usernameInput.trim(),
-    password: passwordInput,
+    token: data.token,
+    username: data.user.username,
+    characterImg: data.user.charInput,
   };
 }
+
+function logIn(parsedData) {
+  localStorage.setItem("token", parsedData.token);
+  localStorage.setItem("username", parsedData.username);
+  localStorage.setItem("characterImg", parsedData.charInput);
+  // window.location.href = "dashboard.html";
+}
+
+function authErrorMsg() {}
+// function createUserPayload(usernameInput, passwordInput) {
+//   return {
+//     username: usernameInput.trim(),
+//     password: passwordInput,
+//   };
+// }
 
 signupForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -152,25 +169,23 @@ toLoginButton.addEventListener("click", () => {
   updateModeInURL("login");
 });
 
-// Sign Up Functions for Character Selection
-function changeCharacter(direction) {
-  const nextIndex = calculateNewIndex(
-    currentIndex,
-    direction,
-    characters.length
-  );
-
-  charImg.src = characters[nextIndex];
-  charInput = characters[nextIndex];
-  currentIndex = nextIndex;
-}
-
 const updateModeInURL = (mode) => {
   const url = new URL(window.location); // get current URL
   url.searchParams.set("mode", mode); // update mode param
   history.replaceState(null, "", url); // replace current URL without reloading
 };
 
-function authenticateUser() {
-  window.location.href = `dashboard.html?username=${data.username}`;
+function changeCharacter(direction) {
+  const nextIndex = calculateNewIndex(
+    currentIndex,
+    direction,
+    characters.length
+  );
+  charImg.src = characters[nextIndex];
+  charInput = characters[nextIndex];
+  currentIndex = nextIndex;
 }
+
+// function authenticateUser() {
+//   window.location.href = `dashboard.html?username=${data.username}`;
+// }

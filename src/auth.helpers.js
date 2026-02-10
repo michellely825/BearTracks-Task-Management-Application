@@ -17,3 +17,10 @@ export function calculateNewIndex(currentIndex, direction, charactersLength) {
   }
   return nextIndex;
 }
+
+export function createUserPayload(usernameInput, passwordInput) {
+  return {
+    username: usernameInput.trim(),
+    password: passwordInput,
+  };
+}
