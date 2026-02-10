@@ -8,20 +8,12 @@ export function updateAuthScreen(mode, loginScreen, signupScreen) {
   }
 }
 
-export function nextCharacter() {
-  charImgIndex++;
-  if (charImgIndex >= characters.length) {
-    charImgIndex = 0;
+export function calculateNewIndex(currentIndex, direction, charactersLength) {
+  let nextIndex = currentIndex + direction;
+  if (nextIndex < 0) {
+    nextIndex = charactersLength - 1;
+  } else if (nextIndex >= charactersLength) {
+    nextIndex = 0;
   }
-  charImg.src = characters[charImgIndex];
-  charInput = characters[charImgIndex];
-}
-
-export function prevCharacter() {
-  charImgIndex--;
-  if (charImgIndex < 0) {
-    charImgIndex = characters.length - 1;
-  }
-  charImg.src = characters[charImgIndex];
-  charInput = characters[charImgIndex];
+  return nextIndex;
 }

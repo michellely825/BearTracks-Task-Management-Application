@@ -1,26 +1,11 @@
 // const { response } = require("express");
-import { updateAuthScreen } from "./auth.helpers.js";
-const params = new URLSearchParams(window.location.search);
+import { updateAuthScreen, calculateNewIndex } from "./auth.helpers.js";
 
 // Variables
+const params = new URLSearchParams(window.location.search);
 const BACKEND_URL = "http://localhost:3000";
-let charImgIndex = 0;
+let currentIndex = 0;
 let charInput = "/src/images/characters/bear12.png";
-
-const loginErrorMsg = document.querySelector("#login-error-msg");
-const signupErrorMsg = document.querySelector("#signup-error-msg");
-// Log In DOM
-const loginScreen = document.getElementById("log-in");
-const loginForm = document.querySelector("#log-in-form");
-const toSignupButton = document.getElementById("switch-to-signup-button");
-
-// Sign In DOM
-const signupScreen = document.getElementById("sign-up");
-const signupForm = document.querySelector("#sign-up-form");
-const toLoginButton = document.getElementById("switch-to-login-button");
-const rightArrow = document.getElementById("right-arrow");
-const leftArrow = document.getElementById("left-arrow");
-const charImg = document.getElementById("character-img");
 
 // Data
 const characters = [
@@ -32,12 +17,28 @@ const characters = [
   "/src/images/characters/panda12.png",
 ];
 
+// DOM
+const loginErrorMsg = document.querySelector("#login-error-msg");
+const signupErrorMsg = document.querySelector("#signup-error-msg");
+const loginScreen = document.getElementById("log-in");
+const loginForm = document.querySelector("#log-in-form");
+const toSignupButton = document.getElementById("switch-to-signup-button");
+const signupScreen = document.getElementById("sign-up");
+const signupForm = document.querySelector("#sign-up-form");
+const toLoginButton = document.getElementById("switch-to-login-button");
+const rightArrow = document.getElementById("right-arrow");
+const leftArrow = document.getElementById("left-arrow");
+const charImg = document.getElementById("character-img");
+
+// Event Listeners
 document.addEventListener("DOMContentLoaded", () => {
   const mode = params.get("mode");
   updateAuthScreen(mode, loginScreen, signupScreen);
 });
 
-// Event Listeners
+leftArrow.addEventListener("click", () => changeCharacter(-1));
+rightArrow.addEventListener("click", () => changeCharacter(1));
+
 // loginForm.addEventListener("submit", async (e) => {
 //   e.preventDefault();
 //   const usernameInput = document.querySelector("#log-in-username").value.trim();
@@ -151,44 +152,24 @@ toLoginButton.addEventListener("click", () => {
   updateModeInURL("login");
 });
 
-leftArrow.addEventListener("click", () => changeCharacter(-1));
-rightArrow.addEventListener("click", () => changeCharacter(1));
+// Sign Up Functions for Character Selection
+function changeCharacter(direction) {
+  const nextIndex = calculateNewIndex(
+    currentIndex,
+    direction,
+    characters.length
+  );
+
+  charImg.src = characters[nextIndex];
+  charInput = characters[nextIndex];
+  currentIndex = nextIndex;
+}
 
 const updateModeInURL = (mode) => {
   const url = new URL(window.location); // get current URL
   url.searchParams.set("mode", mode); // update mode param
   history.replaceState(null, "", url); // replace current URL without reloading
 };
-
-// Sign Up Functions for Character Selection
-function changeCharacter(direction) {
-  charImgIndex += direction;
-  if (charImgIndex < 0) {
-    charImgIndex = characters.length - 1;
-  } else if (charImgIndex >= characters.length) {
-    charImgIndex = 0;
-  }
-  charImg.src = characters[charImgIndex];
-  charInput = characters[charImgIndex];
-}
-
-// function prevCharacter() {
-//   charImgIndex--;
-//   if (charImgIndex < 0) {
-//     charImgIndex = characters.length - 1;
-//   }
-//   charImg.src = characters[charImgIndex];
-//   charInput = characters[charImgIndex];
-// }
-
-// function nextCharacter() {
-//   charImgIndex++;
-//   if (charImgIndex >= characters.length) {
-//     charImgIndex = 0;
-//   }
-//   charImg.src = characters[charImgIndex];
-//   charInput = characters[charImgIndex];
-// }
 
 function authenticateUser() {
   window.location.href = `dashboard.html?username=${data.username}`;
