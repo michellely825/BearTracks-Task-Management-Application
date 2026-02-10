@@ -6,3 +6,5 @@ test("trims username correctly", () => {
     password: "nut",
   });
 });
+
+// test which auth screen displays

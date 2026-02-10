@@ -1,5 +1,5 @@
 // const { response } = require("express");
-const { updateAuthScreen } = require("auth.helpers.js");
+import { updateAuthScreen } from "./auth.helpers.js";
 const params = new URLSearchParams(window.location.search);
 
 // Variables
@@ -34,8 +34,6 @@ const characters = [
 
 document.addEventListener("DOMContentLoaded", () => {
   const mode = params.get("mode");
-  const loginScreen = document.querySelector("#log-in");
-  const signupScreen = document.querySelector("#sign-up");
   updateAuthScreen(mode, loginScreen, signupScreen);
 });
 
@@ -143,8 +141,15 @@ signupForm.addEventListener("submit", async (e) => {
   }
 });
 
-toSignupButton.addEventListener("click", () => updateMode("signup"));
-toLoginButton.addEventListener("click", () => updateMode("login"));
+toSignupButton.addEventListener("click", () => {
+  updateAuthScreen("signup", loginScreen, signupScreen);
+  console.log("here");
+  updateModeInURL("signup");
+});
+toLoginButton.addEventListener("click", () => {
+  updateAuthScreen("login", loginScreen, signupScreen);
+  updateModeInURL("login");
+});
 
 leftArrow.addEventListener("click", prevCharacter);
 rightArrow.addEventListener("click", nextCharacter);
@@ -155,16 +160,16 @@ const updateModeInURL = (mode) => {
   history.replaceState(null, "", url); // replace current URL without reloading
 };
 
-function updateMode(mode) {
-  if (mode === "login") {
-    loginScreen.classList.remove("hidden");
-    signupScreen.classList.add("hidden");
-  } else if (mode === "signup") {
-    loginScreen.classList.add("hidden");
-    signupScreen.classList.remove("hidden");
-  }
-  updateModeInURL(mode);
-}
+// function updateMode(mode) {
+//   if (mode === "login") {
+//     loginScreen.classList.remove("hidden");
+//     signupScreen.classList.add("hidden");
+//   } else if (mode === "signup") {
+//     loginScreen.classList.add("hidden");
+//     signupScreen.classList.remove("hidden");
+//   }
+//   updateModeInURL(mode);
+// }
 
 // Sign Up Functions for Character Selection
 function nextCharacter() {
