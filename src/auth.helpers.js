@@ -7,3 +7,21 @@ export function updateAuthScreen(mode, loginScreen, signupScreen) {
     signupScreen.classList.remove("hidden");
   }
 }
+
+export function nextCharacter() {
+  charImgIndex++;
+  if (charImgIndex >= characters.length) {
+    charImgIndex = 0;
+  }
+  charImg.src = characters[charImgIndex];
+  charInput = characters[charImgIndex];
+}
+
+export function prevCharacter() {
+  charImgIndex--;
+  if (charImgIndex < 0) {
+    charImgIndex = characters.length - 1;
+  }
+  charImg.src = characters[charImgIndex];
+  charInput = characters[charImgIndex];
+}

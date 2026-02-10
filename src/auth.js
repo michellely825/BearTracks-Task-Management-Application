@@ -151,8 +151,8 @@ toLoginButton.addEventListener("click", () => {
   updateModeInURL("login");
 });
 
-leftArrow.addEventListener("click", prevCharacter);
-rightArrow.addEventListener("click", nextCharacter);
+leftArrow.addEventListener("click", () => changeCharacter(-1));
+rightArrow.addEventListener("click", () => changeCharacter(1));
 
 const updateModeInURL = (mode) => {
   const url = new URL(window.location); // get current URL
@@ -161,25 +161,34 @@ const updateModeInURL = (mode) => {
 };
 
 // Sign Up Functions for Character Selection
-function nextCharacter() {
-  console.log("next clicked");
-  charImgIndex++;
-  if (charImgIndex >= characters.length) {
+function changeCharacter(direction) {
+  charImgIndex += direction;
+  if (charImgIndex < 0) {
+    charImgIndex = characters.length - 1;
+  } else if (charImgIndex >= characters.length) {
     charImgIndex = 0;
   }
   charImg.src = characters[charImgIndex];
   charInput = characters[charImgIndex];
 }
 
-function prevCharacter() {
-  console.log("prev clicked");
-  charImgIndex--;
-  if (charImgIndex < 0) {
-    charImgIndex = characters.length - 1;
-  }
-  charImg.src = characters[charImgIndex];
-  charInput = characters[charImgIndex];
-}
+// function prevCharacter() {
+//   charImgIndex--;
+//   if (charImgIndex < 0) {
+//     charImgIndex = characters.length - 1;
+//   }
+//   charImg.src = characters[charImgIndex];
+//   charInput = characters[charImgIndex];
+// }
+
+// function nextCharacter() {
+//   charImgIndex++;
+//   if (charImgIndex >= characters.length) {
+//     charImgIndex = 0;
+//   }
+//   charImg.src = characters[charImgIndex];
+//   charInput = characters[charImgIndex];
+// }
 
 function authenticateUser() {
   window.location.href = `dashboard.html?username=${data.username}`;
