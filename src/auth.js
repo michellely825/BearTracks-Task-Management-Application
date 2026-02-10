@@ -1,6 +1,5 @@
 // const { response } = require("express");
 const params = new URLSearchParams(window.location.search);
-const mode = params.get("mode");
 
 // Variables
 const BACKEND_URL = "http://localhost:3000";
@@ -40,6 +39,10 @@ function updateAuthScreen(mode) {
   } else if (mode === "signup") {
     loginScreen.classList.add("hidden");
   }
+}
+
+function getModeFromURL() {
+  return params.get("mode");
 }
 
 // Event Listeners
