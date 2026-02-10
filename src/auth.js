@@ -99,8 +99,6 @@ function parseResponse(response, data) {
   if (!response.ok) {
     throw new Error(data.error);
   }
-  console.log("response", response);
-  console.log("data", data);
   return {
     token: data.token,
     username: data.user.username,
@@ -111,11 +109,12 @@ function parseResponse(response, data) {
 function logIn(parsedData) {
   localStorage.setItem("token", parsedData.token);
   localStorage.setItem("username", parsedData.username);
-  localStorage.setItem("characterImg", parsedData.charInput);
-  // window.location.href = "dashboard.html";
+  localStorage.setItem("characterImg", parsedData.characterImg);
+  window.location.href = "dashboard.html";
 }
 
 function authErrorMsg() {}
+
 // function createUserPayload(usernameInput, passwordInput) {
 //   return {
 //     username: usernameInput.trim(),
