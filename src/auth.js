@@ -1,4 +1,5 @@
 // const { response } = require("express");
+const { updateAuthScreen } = require("auth.helpers.js");
 const params = new URLSearchParams(window.location.search);
 
 // Variables
@@ -31,19 +32,12 @@ const characters = [
   "/src/images/characters/panda12.png",
 ];
 
-function updateAuthScreen(mode) {
-  loginScreen.classList.add("hidden");
-  signupScreen.classList.add("hidden");
-  if (mode === "login") {
-    signupScreen.classList.add("hidden");
-  } else if (mode === "signup") {
-    loginScreen.classList.add("hidden");
-  }
-}
-
-function getModeFromURL() {
-  return params.get("mode");
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const mode = params.get("mode");
+  const loginScreen = document.querySelector("#log-in");
+  const signupScreen = document.querySelector("#sign-up");
+  updateAuthScreen(mode, loginScreen, signupScreen);
+});
 
 // Event Listeners
 // loginForm.addEventListener("submit", async (e) => {
