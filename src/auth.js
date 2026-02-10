@@ -160,17 +160,6 @@ const updateModeInURL = (mode) => {
   history.replaceState(null, "", url); // replace current URL without reloading
 };
 
-// function updateMode(mode) {
-//   if (mode === "login") {
-//     loginScreen.classList.remove("hidden");
-//     signupScreen.classList.add("hidden");
-//   } else if (mode === "signup") {
-//     loginScreen.classList.add("hidden");
-//     signupScreen.classList.remove("hidden");
-//   }
-//   updateModeInURL(mode);
-// }
-
 // Sign Up Functions for Character Selection
 function nextCharacter() {
   console.log("next clicked");
