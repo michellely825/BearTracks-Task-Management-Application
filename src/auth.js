@@ -32,29 +32,62 @@ const characters = [
   "/src/images/characters/panda12.png",
 ];
 
-if (mode === "login") {
-  signupScreen.classList.add("hidden");
-} else if (mode === "signup") {
+function updateAuthScreen(mode) {
   loginScreen.classList.add("hidden");
+  signupScreen.classList.add("hidden");
+  if (mode === "login") {
+    signupScreen.classList.add("hidden");
+  } else if (mode === "signup") {
+    loginScreen.classList.add("hidden");
+  }
 }
 
 // Event Listeners
+// loginForm.addEventListener("submit", async (e) => {
+//   e.preventDefault();
+//   const usernameInput = document.querySelector("#log-in-username").value.trim();
+//   const passwordInput = document.querySelector("#log-in-password").value;
+//   try {
+//     loginErrorMsg.classList.add("hidden");
+//     const response = await fetch(`${BACKEND_URL}/login`, {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({
+//         username: usernameInput,
+//         password: passwordInput,
+//       }),
+//     });
+//     const data = await response.json(); // data is the token
+//     console.log("data send back from logins.js:::", data);
+//     if (!response.ok) {
+//       loginErrorMsg.textContent = data.error;
+//       loginErrorMsg.classList.remove("hidden");
+//       throw new Error(data.error);
+//     }
+//     localStorage.setItem("token", data.token);
+//     localStorage.setItem("username", data.user.username);
+//     localStorage.setItem("characterImg", data.user.charInput);
+
+//     window.location.href = "dashboard.html";
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// });
+
+// rewriting login form shiet
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const usernameInput = document.querySelector("#log-in-username").value.trim();
+  const usernameInput = document.querySelector("#log-in-username").value;
   const passwordInput = document.querySelector("#log-in-password").value;
+  const userPayload = createUserPayload(usernameInput, passwordInput);
   try {
     loginErrorMsg.classList.add("hidden");
     const response = await fetch(`${BACKEND_URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: usernameInput,
-        password: passwordInput,
-      }),
+      body: JSON.stringify(userPayload),
     });
     const data = await response.json(); // data is the token
-    console.log("data send back from logins.js:::", data);
     if (!response.ok) {
       loginErrorMsg.textContent = data.error;
       loginErrorMsg.classList.remove("hidden");
@@ -69,6 +102,13 @@ loginForm.addEventListener("submit", async (e) => {
     console.error(error.message);
   }
 });
+
+function createUserPayload(usernameInput, passwordInput) {
+  return {
+    username: usernameInput.trim(),
+    password: passwordInput,
+  };
+}
 
 signupForm.addEventListener("submit", async (e) => {
   e.preventDefault();

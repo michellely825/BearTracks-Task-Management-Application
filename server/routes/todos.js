@@ -32,14 +32,6 @@ router.get("/", authenticateToken, async (req, res) => {
   }
 });
 
-// Update task text content
-// router.put("/:id", authenticateToken, (req, res) => {
-//   try {
-//   } catch (error) {
-//     res.status(500).json({ error: "PUT /todos error" });
-//   }
-// });
-
 // Update task status or task content
 router.put("/:id", authenticateToken, async (req, res) => {
   try {
