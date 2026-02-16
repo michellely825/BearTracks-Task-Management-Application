@@ -1,9 +1,10 @@
-const express = require("express");
+import express from "express";
+// import Login from "../models/login.js"; // if needed
+import User from "../models/user.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+
 const router = express.Router();
-// const Login = require("../models/login");
-const User = require("../models/user");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
 // TODO: handle unique usernames
 // log in and creates a JWT token (with the user info)
@@ -44,4 +45,4 @@ function generateToken(payload) {
 }
 
 // export router
-module.exports = router;
+export default router;

@@ -4,12 +4,6 @@ import {
   createUserPayload,
 } from "./auth.helpers.js";
 
-// const {
-//   updateAuthScreen,
-//   calculateNewIndex,
-//   createUserPayload,
-// } = require("auth.helpers.js");
-
 // Variables
 const params = new URLSearchParams(window.location.search);
 const BACKEND_URL = "http://localhost:3000";
@@ -93,14 +87,15 @@ loginForm.addEventListener("submit", async (e) => {
       body: JSON.stringify(userPayload),
     });
     const data = await response.json(); // data is the token
-    const parsedData = parseResponse(response, data);
+    const parsedData = parseServerResponse(response, data);
     logIn(parsedData); // updates localStorage and navigates
   } catch (error) {
+    displayAuthErrorMsg(loginErrorMsg, error.message);
     console.error(error.message);
   }
 });
 
-function parseResponse(response, data) {
+function parseServerResponse(response, data) {
   if (!response.ok) {
     throw new Error(data.error);
   }
@@ -118,7 +113,46 @@ function logIn(parsedData) {
   window.location.href = "dashboard.html";
 }
 
-function authErrorMsg() {}
+function displayAuthErrorMsg(mode, errorMsg) {
+  mode.textContent = errorMsg;
+  mode.classList.remove("hidden");
+}
+
+// signupForm.addEventListener("submit", async (e) => {
+//   e.preventDefault();
+
+//   const usernameInput = document
+//     .getElementById("sign-up-username")
+//     .value.trim();
+//   const passwordInput = document.getElementById("sign-up-password").value;
+//   try {
+//     signupErrorMsg.classList.add("hidden");
+//     const response = await fetch(`${BACKEND_URL}/users`, {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({
+//         username: usernameInput,
+//         password: passwordInput,
+//         charInput,
+//       }),
+//     });
+//     const data = await response.json();
+//     console.log("data send back from users.js:::", data);
+
+//     if (!response.ok) {
+//       signupErrorMsg.textContent = data.error;
+//       signupErrorMsg.classList.remove("hidden");
+//       throw new Error(data.error); // stops execution and jumps to nearest catch block
+//     }
+//     // store token and username
+//     localStorage.setItem("token", data.token);
+//     localStorage.setItem("username", data.user.username);
+//     localStorage.setItem("characterImg", data.user.charInput);
+//     window.location.href = "dashboard.html";
+//   } catch (error) {
+//     console.error(error.message); // handles thrown errors
+//   }
+// });
 
 signupForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -139,19 +173,10 @@ signupForm.addEventListener("submit", async (e) => {
       }),
     });
     const data = await response.json();
-    console.log("data send back from users.js:::", data);
-
-    if (!response.ok) {
-      signupErrorMsg.textContent = data.error;
-      signupErrorMsg.classList.remove("hidden");
-      throw new Error(data.error); // stops execution and jumps to nearest catch block
-    }
-    // store token and username
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("username", data.user.username);
-    localStorage.setItem("characterImg", data.user.charInput);
-    window.location.href = "dashboard.html";
+    const parsedData = parseServerResponse(response, data);
+    logIn(parsedData);
   } catch (error) {
+    displayAuthErrorMsg(signupErrorMsg, error.message);
     console.error(error.message); // handles thrown errors
   }
 });

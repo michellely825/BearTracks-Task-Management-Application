@@ -1,10 +1,3 @@
-// const { sign } = require("jsonwebtoken");
-// const {
-//   createUserPayload,
-//   calculateNewIndex,
-//   updateAuthScreen,
-// } = require("../src/auth.helpers");
-
 import {
   updateAuthScreen,
   calculateNewIndex,

@@ -2,7 +2,7 @@
 // the model allows you to do CRUD operations
 
 // import mongoose
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 // defines a schema which mongoose enforces before data hits MongoDB
 // allows for data validation
@@ -17,4 +17,4 @@ const todoSchema = new mongoose.Schema({
 const Todo = mongoose.model("Todo", todoSchema, "todos");
 
 // exports the model obj to be used in other files like server.js
-module.exports = Todo;
+export default Todo;

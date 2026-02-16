@@ -1,8 +1,8 @@
 // Handle all /todos API logic
-const express = require("express");
+import express from "express";
 const router = express.Router(); // router = mini Express app which allows the routes to be in their own files
-const Todo = require("../models/todo"); // Imports todo Mongoose model which does CRUD
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
+import Todo from "../models/todo.js"; // Imports todo Mongoose model which does CRUD
 
 // Create a new todo and saves user ID too
 router.post("/", authenticateToken, async (req, res) => {
@@ -84,4 +84,4 @@ function authenticateToken(req, res, next) {
   });
 }
 
-module.exports = router;
+export default router;
