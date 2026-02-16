@@ -115,13 +115,6 @@ function logIn(parsedData) {
 
 function authErrorMsg() {}
 
-// function createUserPayload(usernameInput, passwordInput) {
-//   return {
-//     username: usernameInput.trim(),
-//     password: passwordInput,
-//   };
-// }
-
 signupForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
