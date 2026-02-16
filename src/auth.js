@@ -122,11 +122,6 @@ function logIn(parsedData) {
   window.location.href = "dashboard.html";
 }
 
-// function displayAuthErrorMsg(mode, errorMsg) {
-//   mode.textContent = errorMsg;
-//   mode.classList.remove("hidden");
-// }
-
 const updateModeInURL = (mode) => {
   const url = new URL(window.location); // get current URL
   url.searchParams.set("mode", mode); // update mode param

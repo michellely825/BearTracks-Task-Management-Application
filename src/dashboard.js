@@ -1,9 +1,13 @@
+//TODO: reward system?
+//TODO: display todays date? or dates in general of when the task was created?
+
+// Variables
 const BACKEND_URL = "http://localhost:3000";
 const token = localStorage.getItem("token"); //TODO: do refresh token?
 const username = localStorage.getItem("username");
 const character = localStorage.getItem("characterImg");
-console.log(character);
 
+// DOM
 const signOutButton = document.getElementById("sign-out-button");
 const addButton = document.getElementById("add-button");
 const taskInput = document.getElementById("task-input");
@@ -13,9 +17,10 @@ const nameSpan = document.getElementById("username-span");
 const countSpan = document.getElementById("complete-tasks-count-span");
 const characterImg = document.getElementById("user-profile-img");
 
-//TODO: reward system?
-//TODO: display todays date? or dates in general of when the task was created?
-signOutButton.addEventListener("click", signOut);
+// Event Listeners
+signOutButton.addEventListener("click", () => {
+  window.location.href = `index.html`;
+});
 addButton.addEventListener("click", addTask);
 document.addEventListener("click", updateTaskStatus);
 
@@ -38,19 +43,25 @@ document.addEventListener("DOMContentLoaded", async () => {
     for (const todo of data.todos) {
       addTaskToDOM(todo);
     }
-    updateCount(data.todos);
+    updateCount();
   } catch (error) {
     console.error(error.message);
   }
 });
 
-function signOut() {
-  window.location.href = `index.html`;
+// Functions
+function updateCount() {
+  const numCompletedElements = countCompleted(
+    Array.from(document.querySelectorAll(".todo-item"))
+  );
+  countSpan.textContent = numCompletedElements;
 }
 
-function updateCount() {
-  const completedElements = document.querySelectorAll(".completed");
-  countSpan.textContent = completedElements.length;
+function countCompleted(array) {
+  const numCompletedElements = array.filter((element) =>
+    element.classList.contains("completed")
+  );
+  return numCompletedElements.length;
 }
 
 async function addTask() {
@@ -176,8 +187,6 @@ async function deleteTask(e) {
 }
 
 // TODO: update to PATCH?
-//TODO: frontend: move cursor to end
-//TODO: finish implementing this!
 function updateTaskContent(e) {
   const task = e.target.closest("li");
   const tSpan = task.querySelector("span");
@@ -283,7 +292,5 @@ async function updateTaskStatus(e) {
 
 function personalizeUI() {
   nameSpan.textContent = username;
-  characterImg.src = character; //TODO: add a hover feature to change the character
+  characterImg.src = character;
 }
-
-// module.exports = extractTaskDataFromClick;
