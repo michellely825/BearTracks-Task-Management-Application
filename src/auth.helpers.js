@@ -25,4 +25,7 @@ export function createUserPayload(usernameInput, passwordInput) {
   };
 }
 
-// module.exports = { updateAuthScreen, calculateNewIndex, createUserPayload };
+export function displayAuthErrorMsg(mode, errorMsg) {
+  mode.textContent = errorMsg;
+  mode.classList.remove("hidden");
+}

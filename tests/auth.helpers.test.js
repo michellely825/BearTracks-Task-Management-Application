@@ -2,6 +2,7 @@ import {
   updateAuthScreen,
   calculateNewIndex,
   createUserPayload,
+  displayAuthErrorMsg,
 } from "../src/auth.helpers.js";
 
 test("trims username correctly", () => {
@@ -30,25 +31,64 @@ describe("test calculateNewIndex function", () => {
 });
 
 describe("test updateAuthScreen function", () => {
+  let loginScreen;
+  let signupScreen;
+
   beforeEach(() => {
     document.body.innerHTML = `
     <div id="log-in"></div>
     <div id="sign-up"></div>`;
+    loginScreen = document.querySelector("#log-in");
+    signupScreen = document.querySelector("#sign-up");
   });
 
   test("display login screen", () => {
-    const loginScreen = document.querySelector("#log-in");
-    const signupScreen = document.querySelector("#sign-up");
     updateAuthScreen("login", loginScreen, signupScreen);
     expect(loginScreen.classList.contains("hidden")).toBe(false);
     expect(signupScreen.classList.contains("hidden")).toBe(true);
   });
 
   test("display signup screen", () => {
-    const loginScreen = document.querySelector("#log-in");
-    const signupScreen = document.querySelector("#sign-up");
     updateAuthScreen("signup", loginScreen, signupScreen);
     expect(signupScreen.classList.contains("hidden")).toBe(false);
     expect(loginScreen.classList.contains("hidden")).toBe(true);
+  });
+});
+
+describe("test displayAuthErrorMsg function", () => {
+  let signupErrorMsg;
+  let loginErrorMsg;
+
+  beforeEach(() => {
+    document.body.innerHTML = `
+    <h4 class="error-msg hidden" id="signup-error-msg"></h4>
+    <h4 class="error-msg hidden" id="login-error-msg"></h4>
+    `;
+    signupErrorMsg = document.querySelector("#signup-error-msg");
+    loginErrorMsg = document.querySelector("#login-error-msg");
+  });
+
+  test("display login form validation error message", () => {
+    displayAuthErrorMsg(
+      loginErrorMsg,
+      "Sorry, we couldn't find an account with that username. Please try again."
+    );
+    expect(signupErrorMsg.classList.contains("hidden")).toBe(true);
+    expect(loginErrorMsg.classList.contains("hidden")).toBe(false);
+    expect(loginErrorMsg.textContent).toEqual(
+      "Sorry, we couldn't find an account with that username. Please try again."
+    );
+  });
+
+  test("display signup form validation error message", () => {
+    displayAuthErrorMsg(
+      signupErrorMsg,
+      "Username already taken. Please try a different one."
+    );
+    expect(signupErrorMsg.classList.contains("hidden")).toBe(false);
+    expect(loginErrorMsg.classList.contains("hidden")).toBe(true);
+    expect(signupErrorMsg.textContent).toEqual(
+      "Username already taken. Please try a different one."
+    );
   });
 });

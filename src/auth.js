@@ -1,7 +1,10 @@
+//TODO: password validation aka requires uppercase, lowercase and a number
+// Import Helper Functions
 import {
   updateAuthScreen,
   calculateNewIndex,
   createUserPayload,
+  displayAuthErrorMsg,
 } from "./auth.helpers.js";
 
 // Variables
@@ -42,38 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
 leftArrow.addEventListener("click", () => changeCharacter(-1));
 rightArrow.addEventListener("click", () => changeCharacter(1));
 
-// loginForm.addEventListener("submit", async (e) => {
-//   e.preventDefault();
-//   const usernameInput = document.querySelector("#log-in-username").value.trim();
-//   const passwordInput = document.querySelector("#log-in-password").value;
-//   try {
-//     loginErrorMsg.classList.add("hidden");
-//     const response = await fetch(`${BACKEND_URL}/login`, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         username: usernameInput,
-//         password: passwordInput,
-//       }),
-//     });
-//     const data = await response.json(); // data is the token
-//     console.log("data send back from logins.js:::", data);
-//     if (!response.ok) {
-//       loginErrorMsg.textContent = data.error;
-//       loginErrorMsg.classList.remove("hidden");
-//       throw new Error(data.error);
-//     }
-//     localStorage.setItem("token", data.token);
-//     localStorage.setItem("username", data.user.username);
-//     localStorage.setItem("characterImg", data.user.charInput);
-
-//     window.location.href = "dashboard.html";
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-// });
-
-// rewriting login form shiet
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const usernameInput = document.querySelector("#log-in-username").value;
@@ -105,54 +76,6 @@ function parseServerResponse(response, data) {
     characterImg: data.user.charInput,
   };
 }
-
-function logIn(parsedData) {
-  localStorage.setItem("token", parsedData.token);
-  localStorage.setItem("username", parsedData.username);
-  localStorage.setItem("characterImg", parsedData.characterImg);
-  window.location.href = "dashboard.html";
-}
-
-function displayAuthErrorMsg(mode, errorMsg) {
-  mode.textContent = errorMsg;
-  mode.classList.remove("hidden");
-}
-
-// signupForm.addEventListener("submit", async (e) => {
-//   e.preventDefault();
-
-//   const usernameInput = document
-//     .getElementById("sign-up-username")
-//     .value.trim();
-//   const passwordInput = document.getElementById("sign-up-password").value;
-//   try {
-//     signupErrorMsg.classList.add("hidden");
-//     const response = await fetch(`${BACKEND_URL}/users`, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         username: usernameInput,
-//         password: passwordInput,
-//         charInput,
-//       }),
-//     });
-//     const data = await response.json();
-//     console.log("data send back from users.js:::", data);
-
-//     if (!response.ok) {
-//       signupErrorMsg.textContent = data.error;
-//       signupErrorMsg.classList.remove("hidden");
-//       throw new Error(data.error); // stops execution and jumps to nearest catch block
-//     }
-//     // store token and username
-//     localStorage.setItem("token", data.token);
-//     localStorage.setItem("username", data.user.username);
-//     localStorage.setItem("characterImg", data.user.charInput);
-//     window.location.href = "dashboard.html";
-//   } catch (error) {
-//     console.error(error.message); // handles thrown errors
-//   }
-// });
 
 signupForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -190,6 +113,19 @@ toLoginButton.addEventListener("click", () => {
   updateAuthScreen("login", loginScreen, signupScreen);
   updateModeInURL("login");
 });
+
+// Functions
+function logIn(parsedData) {
+  localStorage.setItem("token", parsedData.token);
+  localStorage.setItem("username", parsedData.username);
+  localStorage.setItem("characterImg", parsedData.characterImg);
+  window.location.href = "dashboard.html";
+}
+
+// function displayAuthErrorMsg(mode, errorMsg) {
+//   mode.textContent = errorMsg;
+//   mode.classList.remove("hidden");
+// }
 
 const updateModeInURL = (mode) => {
   const url = new URL(window.location); // get current URL
