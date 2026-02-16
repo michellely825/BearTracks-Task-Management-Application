@@ -1,9 +1,15 @@
-const { sign } = require("jsonwebtoken");
-const {
-  createUserPayload,
-  calculateNewIndex,
+// const { sign } = require("jsonwebtoken");
+// const {
+//   createUserPayload,
+//   calculateNewIndex,
+//   updateAuthScreen,
+// } = require("../src/auth.helpers");
+
+import {
   updateAuthScreen,
-} = require("../src/auth.helpers");
+  calculateNewIndex,
+  createUserPayload,
+} from "../src/auth.helpers.js";
 
 test("trims username correctly", () => {
   expect(createUserPayload("  michy   ", "nut")).toEqual({

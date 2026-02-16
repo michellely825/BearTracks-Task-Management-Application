@@ -1,4 +1,4 @@
-function updateAuthScreen(mode, loginScreen, signupScreen) {
+export function updateAuthScreen(mode, loginScreen, signupScreen) {
   loginScreen.classList.add("hidden");
   signupScreen.classList.add("hidden");
   if (mode === "login") {
@@ -8,7 +8,7 @@ function updateAuthScreen(mode, loginScreen, signupScreen) {
   }
 }
 
-function calculateNewIndex(currentIndex, direction, charactersLength) {
+export function calculateNewIndex(currentIndex, direction, charactersLength) {
   let nextIndex = currentIndex + direction;
   if (nextIndex < 0) {
     nextIndex = charactersLength - 1;
@@ -18,11 +18,11 @@ function calculateNewIndex(currentIndex, direction, charactersLength) {
   return nextIndex;
 }
 
-function createUserPayload(usernameInput, passwordInput) {
+export function createUserPayload(usernameInput, passwordInput) {
   return {
     username: usernameInput.trim(),
     password: passwordInput,
   };
 }
 
-module.exports = { updateAuthScreen, calculateNewIndex, createUserPayload };
+// module.exports = { updateAuthScreen, calculateNewIndex, createUserPayload };

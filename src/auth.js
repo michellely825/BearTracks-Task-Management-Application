@@ -1,9 +1,14 @@
-// const { response } = require("express");
 import {
   updateAuthScreen,
   calculateNewIndex,
   createUserPayload,
 } from "./auth.helpers.js";
+
+// const {
+//   updateAuthScreen,
+//   calculateNewIndex,
+//   createUserPayload,
+// } = require("auth.helpers.js");
 
 // Variables
 const params = new URLSearchParams(window.location.search);
@@ -177,7 +182,3 @@ function changeCharacter(direction) {
   charInput = characters[nextIndex];
   currentIndex = nextIndex;
 }
-
-// function authenticateUser() {
-//   window.location.href = `dashboard.html?username=${data.username}`;
-// }
