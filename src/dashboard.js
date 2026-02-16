@@ -1,6 +1,9 @@
 //TODO: reward system?
 //TODO: display todays date? or dates in general of when the task was created?
 
+// Imports
+import { captureTask, clearTaskInput } from "./dashboard.helpers.js";
+
 // Variables
 const BACKEND_URL = "http://localhost:3000";
 const token = localStorage.getItem("token"); //TODO: do refresh token?
@@ -23,8 +26,6 @@ signOutButton.addEventListener("click", () => {
 });
 addButton.addEventListener("click", addTask);
 document.addEventListener("click", updateTaskStatus);
-
-// runs when the page is first loaded or gets refreshed
 document.addEventListener("DOMContentLoaded", async () => {
   if (!token) return; // not logged in
   try {
@@ -60,27 +61,36 @@ function updateCount() {
 function countCompleted(array) {
   const numCompletedElements = array.filter((element) =>
     element.classList.contains("completed")
-  );
-  return numCompletedElements.length;
+  ).length;
+  return numCompletedElements;
 }
 
 async function addTask() {
-  const task = captureTask();
+  const rawValue = taskInput.value;
+
+  const task = captureTask(rawValue);
   if (!task) return; // stop if input is empty
+
+  clearTaskInput(taskInput);
+
   const savedTask = await sendTaskToServer(task);
   if (!savedTask) return; // stop if server fails and returns null
+
   addTaskToDOM(savedTask);
 }
 
-// reads what the user typed
-function captureTask() {
-  const task = taskInput.value;
-  if (task != "") {
-    taskInput.value = "";
-    return task;
-  }
-  return null;
-}
+// function clearTaskInput() {
+//   taskInput.value = "";
+// }
+
+// returns what the user typed and clear the input field
+// function captureTask(taskInputValue) {
+//   if (taskInputValue === "") {
+//     return null;
+//   }
+//   taskInput.value = "";
+//   return taskInputValue;
+// }
 
 // adds task to DB
 async function sendTaskToServer(task) {

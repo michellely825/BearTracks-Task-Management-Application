@@ -73,8 +73,8 @@ describe("test displayAuthErrorMsg function", () => {
       loginErrorMsg,
       "Sorry, we couldn't find an account with that username. Please try again."
     );
-    expect(signupErrorMsg.toHaveClass("hidden"));
-    expect(loginErrorMsg.not.toHaveClass("hidden"));
+    expect(signupErrorMsg.classList.contains("hidden")).toBe(true);
+    expect(loginErrorMsg.classList.contains("hidden")).toBe(false);
     expect(loginErrorMsg.textContent).toEqual(
       "Sorry, we couldn't find an account with that username. Please try again."
     );
@@ -85,8 +85,8 @@ describe("test displayAuthErrorMsg function", () => {
       signupErrorMsg,
       "Username already taken. Please try a different one."
     );
-    expect(signupErrorMsg.not.toHaveClass("hidden"));
-    expect(loginErrorMsg.toHaveClass("hidden"));
+    expect(signupErrorMsg.classList.contains("hidden")).toBe(false);
+    expect(loginErrorMsg.classList.contains("hidden")).toBe(true);
     expect(signupErrorMsg.textContent).toEqual(
       "Username already taken. Please try a different one."
     );
