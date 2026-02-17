@@ -25,34 +25,3 @@ describe("test clearTaskInput", () => {
     expect(taskInput.value).toBe("");
   });
 });
-
-// describe("test countCompleted", () => {
-//   test("count zero completed tasks", () => {
-//     const taskArray = [];
-//     const numCompletedElements = countCompleted(taskArray);
-//     expect(numCompletedElements).toEqual(0);
-//   });
-
-//   test("count 2 out of 3 tasks completed", () => {
-//     const taskArray = [
-//       { taskContent: "eat", classList: ["todo-item", "completed"] },
-//       { taskContent: "sleep", classList: ["todo-item", "completed"] },
-//       { taskContent: "drink", classList: ["todo-item"] },
-//     ];
-//     const numCompletedElements = countCompleted(taskArray);
-//     expect(numCompletedElements).toEqual(2);
-//   });
-
-//   test("display zero tasks are completed", () => {
-//     updateCount();
-//     expect(countSpan);
-//   });
-
-//   test("display non-zero count");
-
-//   test("increment count after completing a task", () => {});
-
-//   test("decrement count after deleting a task", () => {});
-
-//   test("decrement count after unchecking a task", () => {});
-// });

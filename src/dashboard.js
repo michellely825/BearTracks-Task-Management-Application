@@ -1,12 +1,13 @@
+//TODO: do refresh token?
 //TODO: reward system?
-//TODO: display todays date? or dates in general of when the task was created?
+// TODO:test coverage for server requests
 
 // Imports
 import { captureTask, clearTaskInput } from "./dashboard.helpers.js";
 
 // Variables
 const BACKEND_URL = "http://localhost:3000";
-const token = localStorage.getItem("token"); //TODO: do refresh token?
+const token = localStorage.getItem("token");
 const username = localStorage.getItem("username");
 const character = localStorage.getItem("characterImg");
 
@@ -78,19 +79,6 @@ async function addTask() {
 
   addTaskToDOM(savedTask);
 }
-
-// function clearTaskInput() {
-//   taskInput.value = "";
-// }
-
-// returns what the user typed and clear the input field
-// function captureTask(taskInputValue) {
-//   if (taskInputValue === "") {
-//     return null;
-//   }
-//   taskInput.value = "";
-//   return taskInputValue;
-// }
 
 // adds task to DB
 async function sendTaskToServer(task) {
@@ -164,8 +152,6 @@ function createTask(taskID, taskValue) {
   editButton.addEventListener("click", updateTaskContent);
 
   buttonDiv.append(editButton, delButton);
-
-  // const content = tInput.append(tSpan);
   task.append(tInput, tSpan, buttonDiv);
 
   return task;
@@ -173,7 +159,6 @@ function createTask(taskID, taskValue) {
 
 async function deleteTask(e) {
   const task = e.target.closest("li");
-  console.log("id:::", task.id);
   try {
     const response = await fetch(`${BACKEND_URL}/todos/${task.id}`, {
       method: "DELETE",
@@ -192,8 +177,6 @@ async function deleteTask(e) {
   } catch (error) {
     console.error(error.message);
   }
-
-  // e.target.parentElement.parentElement.parentElement.remove();
 }
 
 // TODO: update to PATCH?
@@ -230,49 +213,6 @@ function updateTaskContent(e) {
   });
   tSpan.focus();
 }
-
-// update status
-// async function handleCheckboxClick(e, token) {
-//   const taskData = extractTaskDataFromClick(e);
-//   if (!taskData) return;
-//   const data = await updateTaskOnServer(
-//     taskData.taskID,
-//     taskData.completedStatus,
-//     token
-//   );
-//   const taskElement = document.getElementById(taskData.taskID);
-//   if (taskElement) {
-//     taskElement.remove(); // good practice to check if element exists whenever querying DOM
-//     addTaskToDOM(data);
-//     updateCount();
-//   }
-// }
-
-// function extractTaskDataFromClick(e) {
-//   if (e.target.type !== "checkbox") return null;
-//   const task = e.target.parentElement;
-//   return { taskID: task.id, completedStatus: e.target.checked };
-// }
-
-// async function updateTaskOnServer(taskID, completedStatus, token) {
-//   try {
-//     const response = await fetch(`${BACKEND_URL}/todos/${taskID}`, {
-//       method: "PUT",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${token}`,
-//       },
-//       body: JSON.stringify({ completed: completedStatus }), // JS → JSON (string)
-//     });
-//     const data = await response.json();
-//     if (!response.ok) {
-//       throw new Error(data.error);
-//     }
-//     return data;
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-// }
 
 async function updateTaskStatus(e) {
   if (e.target.type == "checkbox") {

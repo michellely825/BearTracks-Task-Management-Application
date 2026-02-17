@@ -1,12 +1,10 @@
 import express from "express";
-// import Login from "../models/login.js"; // if needed
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
-// TODO: handle unique usernames
 // log in and creates a JWT token (with the user info)
 router.post("/", async (req, res) => {
   try {

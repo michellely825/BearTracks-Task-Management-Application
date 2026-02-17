@@ -1,4 +1,3 @@
-//TODO: password validation aka requires uppercase, lowercase and a number
 // Import Helper Functions
 import {
   updateAuthScreen,

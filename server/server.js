@@ -1,11 +1,5 @@
 // starts the server, configures milldeware and connects to MongoDB
 
-// Imports
-// const express = require("express");
-// const cors = require("cors");
-// const mongoose = require("mongoose");
-// require("dotenv").config();
-
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
@@ -16,9 +10,6 @@ dotenv.config();
 import todoRoutes from "./routes/todos.js";
 import userRoutes from "./routes/users.js";
 import loginRoutes from "./routes/logins.js";
-// const todoRoutes = require("./routes/todos");
-// const userRoutes = require("./routes/users");
-// const loginRoutes = require("./routes/logins");
 
 // Middleware
 const app = express();
@@ -50,6 +41,3 @@ mongoose
 app.use("/todos", todoRoutes);
 app.use("/users", userRoutes);
 app.use("/login", loginRoutes);
-
-// test route
-// app.get("/", (req, res) => res.send("bellooo"));

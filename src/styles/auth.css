@@ -10,7 +10,6 @@ h2 {
   justify-content: center;
   align-items: flex-start;
   width: 70%;
-  /* border: 2px solid red; */
 }
 
 #log-in-username,
@@ -23,7 +22,6 @@ h2 {
 }
 
 form > input {
-  /* padding-top: 12px; */
   height: 40px;
   font-size: 1.3em;
   padding-left: 20px;
