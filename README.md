@@ -5,6 +5,10 @@
 BearTracks is a full-stack task management application designed to explore modern web development practices, including authentication, secure credential handling, client-server communication, and dynamic UI updates.
 The project focuses on building a responsive user experience while maintaining clean architecture, modular code organization, and secure backend design.
 
+## Demo
+
+![BearTracks Demo](/assets/demo.gif)
+
 ## Features
 
 - User registration and login workflow
