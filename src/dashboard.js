@@ -1,5 +1,4 @@
 //TODO: do refresh token?
-//TODO: reward system?
 // TODO:test coverage for server requests
 
 // Imports
