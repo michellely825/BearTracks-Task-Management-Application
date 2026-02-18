@@ -13,7 +13,7 @@ The project focuses on building a responsive user experience while maintaining c
 
 - User registration and login workflow
 - JWT-based authentication and session management
-- Token-protected API routes requiring valid authentication
+- RESTful API routes protected by authentication tokens
 - Secure password storage using Bcrypt hashing
 - Persistent data storage with MongoDB
 - Full CRUD Task Management (Create, Read, Update, Delete)
