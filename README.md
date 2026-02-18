@@ -11,15 +11,15 @@ The project focuses on building a responsive user experience while maintaining c
 
 ## Features
 
-- User registration and login workflow
+- Multi-user accounts with secure registration and login
 - JWT-based authentication and session management
-- RESTful API routes protected by authentication tokens
+- Protected RESTful API routes for each user
 - Secure password storage using Bcrypt hashing
 - Persistent data storage with MongoDB
 - Full CRUD Task Management (Create, Read, Update, Delete)
 - Dynamic UI updates without full page reloads
 - Form validation with real-time feedback
-- Defensive checks to prevent invalid operations and inconsistent UI state
+- Built-in safeguards to prevent invalid operations and maintain UI consistency
 
 ## Tech-Stack
 
