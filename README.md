@@ -51,7 +51,8 @@ npm install
 ```
 
 3. Configure environment variables
-   Create a `.env` file in the root directory and add:
+
+Create a `.env` file in the root directory and add:
 
 ```
 MONGO_URI=your_mongodb_connection_string
