@@ -24,11 +24,8 @@ app.use(
 app.use(express.json()); // parses JSON body because Express can't do it automatically
 
 // Set up MongoDB connection
-const MONGO_URI =
-  "mongodb+srv://lym8:UCIanteater2023@michellecluster.uly06nc.mongodb.net/todos_db";
-
 mongoose
-  .connect(MONGO_URI)
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Connected DB:", mongoose.connection.name);
     app.listen(port, () => {
