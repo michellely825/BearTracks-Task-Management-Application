@@ -29,6 +29,47 @@ The project focuses on building a responsive user experience while maintaining c
 - Testing: Jest
 - Security: JWT, Bcrypt
 
+## How to Run Locally
+
+Prerequisites
+
+- Node.js
+- npm
+- MongoDB Atlas account
+
+1. Clone the repository
+
+```
+git clone https://github.com/michellely825/BearTracks-Task-Management-Application.git
+cd BearTracks-Task-Management-Application
+```
+
+2. Install dependencies
+
+```
+npm install
+```
+
+3. Configure environment variables
+   Create a `.env` file in the root directory and add:
+
+```
+MONGO_URI=your_mongodb_connection_string
+ID_TOKEN_SECRET=your_jwt_secret
+```
+
+3. Run the server
+
+```
+npm run devStart
+```
+
+4. Open in browser
+
+```
+http://127.0.0.1:5500/public/index.html
+```
+
 ## Summary of Key Learnings
 
 - Client-Server Architecture: Designed structured request/response flows between frontend and backend services
