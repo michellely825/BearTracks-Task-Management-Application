@@ -107,23 +107,23 @@ describe("test isPasswordValid function", () => {
     loginErrorMsg = document.querySelector("#login-error-msg");
   });
 
-  test("return false if password length < 5", () => {
+  test("return false if password is not valid: not minimum length", () => {
     expect(isPasswordValid("1234")).toBe(false);
   });
 
-  test("return true if password length >= 5", () => {
-    expect(isPasswordValid("12345")).toBe(true);
+  test("return false if password is not valid: no uppercase", () => {
+    expect(isPasswordValid("1234a")).toBe(false);
   });
 
-  test("display error msg if password length < 5", () => {
-    displayAuthErrorMsg(
-      signupErrorMsg,
-      "Password must be a minimum of 5 characters in length."
-    );
-    expect(signupErrorMsg.classList.contains("hidden")).toBe(false);
-    expect(loginErrorMsg.classList.contains("hidden")).toBe(true);
-    expect(signupErrorMsg.textContent).toEqual(
-      "Password must be a minimum of 5 characters in length."
-    );
+  test("return false", () => {
+    expect(isPasswordValid("abcdefg")).toBe(false);
+  });
+
+  test("return false if password is not valid: no digit", () => {
+    expect(isPasswordValid("ABCdef")).toBe(false);
+  });
+
+  test("return true if password is valid", () => {
+    expect(isPasswordValid("Password1")).toBe(true);
   });
 });

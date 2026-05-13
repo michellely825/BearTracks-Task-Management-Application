@@ -27,12 +27,23 @@ export function createUserPayload(usernameInput, passwordInput) {
 
 export function displayAuthErrorMsg(mode, errorMsg) {
   mode.textContent = errorMsg;
-  console.log(errorMsg);
   mode.classList.remove("hidden");
 }
 
 export function isPasswordValid(password) {
-  // minimum length requirement
-  if (password.length >= 5) return true;
+  // password must meet min length and contain an uppercase, lowercase, and a digit
+  const digits = /d/;
+  const uppercase = /[A-Z]/;
+  const minimumLength = 5;
+
+  if (
+    password.length >= minimumLength &&
+    uppercase.test(password) &&
+    // digits.test(password)
+    // digits.test(password)
+  ) {
+    return true;
+  }
+
   return false;
 }

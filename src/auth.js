@@ -87,7 +87,9 @@ signupForm.addEventListener("submit", async (e) => {
   try {
     const passwordInput = document.getElementById("sign-up-password").value;
     while (!isPasswordValid(passwordInput)) {
-      throw new Error("Password must be a minimum of 5 characters in length.");
+      throw new Error(
+        "Password must be a minimum of 5 characters in length and have at least one uppercase letter and a number."
+      );
     }
     signupErrorMsg.classList.add("hidden");
     const response = await fetch(`${BACKEND_URL}/users`, {
