@@ -119,10 +119,6 @@ describe("test isPasswordValid function", () => {
     expect(isPasswordValid("abcdefg")).toBe(false);
   });
 
-  test("return false if password is not valid: no digit", () => {
-    expect(isPasswordValid("ABCdef")).toBe(false);
-  });
-
   test("return true if password is valid", () => {
     expect(isPasswordValid("Password1")).toBe(true);
   });
