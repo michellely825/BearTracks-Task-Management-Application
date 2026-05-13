@@ -32,15 +32,14 @@ export function displayAuthErrorMsg(mode, errorMsg) {
 
 export function isPasswordValid(password) {
   // password must meet min length and contain an uppercase, lowercase, and a digit
-  const digits = /d/;
+  const digits = /\d/;
   const uppercase = /[A-Z]/;
   const minimumLength = 5;
 
   if (
     password.length >= minimumLength &&
     uppercase.test(password) &&
-    // digits.test(password)
-    // digits.test(password)
+    digits.test(password)
   ) {
     return true;
   }
