@@ -24,8 +24,10 @@ const characterImg = document.getElementById("user-profile-img");
 signOutButton.addEventListener("click", () => {
   window.location.href = `index.html`;
 });
+
 addButton.addEventListener("click", addTask);
 document.addEventListener("click", updateTaskStatus);
+
 document.addEventListener("DOMContentLoaded", async () => {
   if (!token) return; // not logged in
   try {

@@ -1,4 +1,4 @@
-// starts the server, configures milldeware and connects to MongoDB
+// starts the server, configures middleware and connects to MongoDB
 
 import express from "express";
 import cors from "cors";
@@ -14,6 +14,7 @@ import loginRoutes from "./routes/logins.js";
 // Middleware
 const app = express();
 const port = 3000;
+
 app.use(
   cors({
     origin: ["http://localhost:5500", "http://127.0.0.1:5500"],
@@ -24,7 +25,11 @@ app.use(
 app.use(express.json()); // parses JSON body because Express can't do it automatically
 
 // Set up MongoDB connection
+// const MONGO_URI =
+// "mongodb+srv://lym8:UCIanteater2023@michellecluster.uly06nc.mongodb.net/todos_db";
+
 mongoose
+  // .connect(MONGO_URI)
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Connected DB:", mongoose.connection.name);

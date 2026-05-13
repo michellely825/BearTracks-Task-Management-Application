@@ -82,8 +82,12 @@ signupForm.addEventListener("submit", async (e) => {
   const usernameInput = document
     .getElementById("sign-up-username")
     .value.trim();
-  const passwordInput = document.getElementById("sign-up-password").value;
+
   try {
+    const passwordInput = document.getElementById("sign-up-password").value;
+    while (!isPasswordValid(passwordInput)) {
+      throw new Error("Password must be a minimum of 5 characters in length");
+    }
     signupErrorMsg.classList.add("hidden");
     const response = await fetch(`${BACKEND_URL}/users`, {
       method: "POST",
@@ -114,6 +118,12 @@ toLoginButton.addEventListener("click", () => {
 });
 
 // Functions
+function isPasswordValid(password) {
+  // minimum length requirement
+  if (password.length > 5) return true;
+  return false;
+}
+
 function logIn(parsedData) {
   localStorage.setItem("token", parsedData.token);
   localStorage.setItem("username", parsedData.username);

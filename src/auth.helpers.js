@@ -27,5 +27,6 @@ export function createUserPayload(usernameInput, passwordInput) {
 
 export function displayAuthErrorMsg(mode, errorMsg) {
   mode.textContent = errorMsg;
+  console.log(errorMsg);
   mode.classList.remove("hidden");
 }
