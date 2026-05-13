@@ -30,3 +30,9 @@ export function displayAuthErrorMsg(mode, errorMsg) {
   console.log(errorMsg);
   mode.classList.remove("hidden");
 }
+
+export function isPasswordValid(password) {
+  // minimum length requirement
+  if (password.length >= 5) return true;
+  return false;
+}

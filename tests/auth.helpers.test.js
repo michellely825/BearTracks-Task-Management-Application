@@ -3,6 +3,7 @@ import {
   calculateNewIndex,
   createUserPayload,
   displayAuthErrorMsg,
+  isPasswordValid,
 } from "../src/auth.helpers.js";
 
 test("trims username correctly", () => {
@@ -89,6 +90,37 @@ describe("test displayAuthErrorMsg function", () => {
     expect(loginErrorMsg.classList.contains("hidden")).toBe(true);
     expect(signupErrorMsg.textContent).toEqual(
       "Username already taken. Please try a different one."
+    );
+  });
+});
+
+describe("test isPasswordValid function", () => {
+  let signupErrorMsg;
+  let loginErrorMsg;
+
+  beforeEach(() => {
+    document.body.innerHTML = `
+    <h4 class="error-msg hidden" id="signup-error-msg"></h4>
+    <h4 class="error-msg hidden" id="login-error-msg"></h4>
+    `;
+    signupErrorMsg = document.querySelector("#signup-error-msg");
+    loginErrorMsg = document.querySelector("#login-error-msg");
+  });
+
+  test("return true if password length >= 5", () => {
+    expect(isPasswordValid("12345")).toBe(true);
+  });
+
+  test("display error msg if password length < 5", () => {
+    expect(isPasswordValid("1234")).toBe(false);
+    displayAuthErrorMsg(
+      signupErrorMsg,
+      "Password must be a minimum of 5 characters in length."
+    );
+    expect(signupErrorMsg.classList.contains("hidden")).toBe(false);
+    expect(loginErrorMsg.classList.contains("hidden")).toBe(true);
+    expect(signupErrorMsg.textContent).toEqual(
+      "Password must be a minimum of 5 characters in length."
     );
   });
 });
