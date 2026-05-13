@@ -107,12 +107,15 @@ describe("test isPasswordValid function", () => {
     loginErrorMsg = document.querySelector("#login-error-msg");
   });
 
+  test("return false if password length < 5", () => {
+    expect(isPasswordValid("1234")).toBe(false);
+  });
+
   test("return true if password length >= 5", () => {
     expect(isPasswordValid("12345")).toBe(true);
   });
 
   test("display error msg if password length < 5", () => {
-    expect(isPasswordValid("1234")).toBe(false);
     displayAuthErrorMsg(
       signupErrorMsg,
       "Password must be a minimum of 5 characters in length."
